@@ -34,6 +34,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-react", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:7.35.0"],\
           ["eslint-plugin-react-hooks", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:4.6.2"],\
           ["eslint-plugin-react-refresh", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:0.4.9"],\
+          ["jotai", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:2.9.1"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:18.3.1"],\
           ["styled-components", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:6.1.12"],\
@@ -2596,6 +2597,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["jotai", [\
+      ["npm:2.9.1", {\
+        "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/jotai-npm-2.9.1-4983197fc6-10c0.zip/node_modules/jotai/",\
+        "packageDependencies": [\
+          ["jotai", "npm:2.9.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:2.9.1", {\
+        "packageLocation": "./.yarn/__virtual__/jotai-virtual-6f258f4625/5/AppData/Local/Yarn/Berry/cache/jotai-npm-2.9.1-4983197fc6-10c0.zip/node_modules/jotai/",\
+        "packageDependencies": [\
+          ["jotai", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:2.9.1"],\
+          ["@types/react", "npm:18.3.3"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["js-tokens", [\
       ["npm:4.0.0", {\
         "packageLocation": "../../../../AppData/Local/Yarn/Berry/cache/js-tokens-npm-4.0.0-0ac852e9e2-10c0.zip/node_modules/js-tokens/",\
@@ -2908,6 +2931,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-react", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:7.35.0"],\
           ["eslint-plugin-react-hooks", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:4.6.2"],\
           ["eslint-plugin-react-refresh", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:0.4.9"],\
+          ["jotai", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:2.9.1"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:18.3.1"],\
           ["styled-components", "virtual:450854446a5aabe6dcccaa5dd1aa6ba478dd67b9c8e2154fb6cdbbe9be4df653a4f9b1bbd999550d25484d17372891d8968a2ae7eeed815aacbe57c06f789900#npm:6.1.12"],\
