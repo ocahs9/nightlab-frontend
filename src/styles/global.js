@@ -2,9 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 const global = createGlobalStyle`
-
     ${reset}
-    
     * {
     box-sizing: border-box;
     }
@@ -12,7 +10,7 @@ const global = createGlobalStyle`
     html {
     font-size: 62.5%;
 
-    background-color: ${({ theme }) => theme.colors.gray_900};
+    background-color: ${({ theme }) => theme.colors.Background_Black}; 
 
     user-select: none;
     -webkit-touch-callout: none;
@@ -59,12 +57,10 @@ const global = createGlobalStyle`
         margin: 0 auto; 
         overflow-x: hidden;
 
-        color: ${({ theme }) => theme.colors.white};
+        //color:
 
-        background-color: ${({ theme }) => theme.colors.gray_900}; 
+        background-color: ${({ theme }) => theme.colors.Background_Black}; 
     }
-
-
 `;
 
 export default global;
