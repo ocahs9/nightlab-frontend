@@ -1,14 +1,10 @@
-import { ThemeProvider } from "styled-components";
-import theme from "./styles/theme";
-import "./index.css";
-import Header from "./components/header/Header";
-
+import { useEffect } from "react";
+//맨 위로 스크롤 시작 
 function App() {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return <></>;
 }
 
 export default App;
