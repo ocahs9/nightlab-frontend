@@ -1,6 +1,6 @@
 import { navigateAtom } from "@stores/navigate";
-import axios from "node_modules/axios/index";
-import { useAtom } from "node_modules/jotai/react";
+import axios from "axios";
+import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

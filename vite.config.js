@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   //plugins: [react(), svgr()],
+  //여기에도 반드시 추가를 해주어야 함.. why?
   plugins: [react()],
   resolve: {
     alias: [
@@ -16,6 +17,7 @@ export default defineConfig({
       { find: "@hooks", replacement: "/src/hooks" },
       { find: "@utils", replacement: "/src/utils" },
       { find: "@apis", replacement: "/src/apis" },
+      { find: "@stores", replacement: "/src/stores"},
     ],
   },
 });

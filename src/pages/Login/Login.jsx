@@ -1,9 +1,9 @@
 import kakaoButtonImg from "@assets/images/kakao_login_medium_narrow.png";
 import { navigateAtom } from "@stores/navigate";
+import { requestKakaoLogin } from "@utils/requestKakao";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { requestKakaoLogin } from "utils/requestKakao";
 import * as S from "./Login.styled";
 
 const Login = () => {
