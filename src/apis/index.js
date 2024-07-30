@@ -29,7 +29,6 @@ const setAccessToken = (token) => {
 };
 
 //refresh_token은 유효기간이 2주이므로 당장 로직 구성 x 
-
 const getRefreshToken = () =>{
   const user = localStorage.getItem("user");
   if(user){
@@ -55,7 +54,6 @@ export const instance = axios.create({
 
 //axios의 인스턴스의 config를 던져준다.
 instance.interceptors.request.use((config)=> {
-  //추후 expiration date 고려해서 새롭게 토큰 가져오는 로직 추가 예정
   const token = getAccessToken();
   if(token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -68,7 +66,7 @@ instance.interceptors.response.use((response)=>response,
   async (error) => {
     const originalRequest = error.config;
     
-    //
+    //추후 RefershToken 도 만류될 수 있는데, 일단 그 부분 로직 구성은 생략(2주이기 때문)
     if (error.response && error.response.data.code === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
