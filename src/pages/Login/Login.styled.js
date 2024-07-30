@@ -29,7 +29,8 @@ export const LoginTitleExplanation = styled.span`
 export const LoginGraphic = styled.div`
   width: 26.5rem;
   height: 32.9rem;
-  background-color: aliceblue;
+  background-image: url(${props => props.imgSrc});
+
 
   margin-top: 28px;
 `

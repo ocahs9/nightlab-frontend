@@ -27,9 +27,9 @@ const KakaoLogin = () => {
         try {
           const response = await axios.post(
             //Backend Full API URL - Access Token Will be returned.
-            'http://ec2-3-35-217-48.ap-northeast-2.compute.amazonaws.com:8080/api/oauth/callback',
-            { code: code },
-            { params: { code: code } }
+            'https://8mtbdhsm-8000.asse.devtunnels.ms/auth/kakao/login',
+            { access_code: code },
+            //{ params: { code: code } }
           );
           console.log(response.data); //JWT - AccessToken, RefreshToken 발급될 예정 (expiration date도 오는지 구분)
           localStorage.setItem('user', JSON.stringify(response.data));
