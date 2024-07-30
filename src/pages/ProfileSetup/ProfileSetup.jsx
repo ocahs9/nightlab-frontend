@@ -1,9 +1,24 @@
+import { IcArrowBottom } from "@assets/svgs";
+
+import { useState } from "react";
+import * as S from "./ProfileSetup.styled";
 
 const ProfileSetup = () => {
+  const [step, setStep] = useState(0);
+  
   return (
-    <div>
+    <S.ProfileSetupWrapper>
+      <S.BodyWrapper>
+        <S.TextWrapper>
+          <S.Title>단과 대학을 선택해 주세요</S.Title>
+          <S.SubTitle>한 번 선택하면 수정이 불가능해요</S.SubTitle>
+        </S.TextWrapper>
+        <S.InputWrapper>
+          <S.DropDown><IcArrowBottom/></S.DropDown>
+        </S.InputWrapper>
+      </S.BodyWrapper>
       
-    </div>
+    </S.ProfileSetupWrapper>
   )
 }
 

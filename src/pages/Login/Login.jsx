@@ -19,7 +19,7 @@ const Login = () => {
     }
     else{ //이미 로그인이 되어 있는 경우 
       alert("로그인되어 있으므로 넘어갑니다.");
-      navigate("/login/school");
+      navigate("/school");
     }
   },[])
 
