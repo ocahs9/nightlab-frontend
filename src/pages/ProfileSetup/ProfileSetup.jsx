@@ -14,9 +14,12 @@ const ProfileSetup = () => {
           <S.SubTitle>한 번 선택하면 수정이 불가능해요</S.SubTitle>
         </S.TextWrapper>
         <S.InputWrapper>
-          <S.DropDown><IcArrowBottom/></S.DropDown>
+          <S.DropDown $isSelected={false}>단과 대학을 선택해 주세요<IcArrowBottom/></S.DropDown>
         </S.InputWrapper>
       </S.BodyWrapper>
+      <S.NextBtn $isFormCompleted={true}>
+        다음
+      </S.NextBtn>
       
     </S.ProfileSetupWrapper>
   )

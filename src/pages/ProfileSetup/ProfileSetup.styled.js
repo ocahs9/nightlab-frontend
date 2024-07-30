@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ProfileSetupWrapper = styled.div`
   width: 37.5rem;
@@ -53,11 +53,44 @@ export const DropDown = styled.div`
   height: 52px;
   padding: 16px;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
 
   border-radius: 8px;
   border: 1px solid var(--Grayscale-Gray_10, #EDF1F5);
   background: rgba(237, 241, 245, 0.25);
-  color: white;
+  color: ${({ $isSelected, theme }) => $isSelected? theme.colors.White : theme.colors.Gray_50}; 
   ${({ theme }) => theme.fonts.Body_1_2};
+`
+
+export const NextBtn = styled.button`
+
+  display: flex;
+  width: 358px;
+  height: 56px;
+  padding: 16px 96px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+
+  border-radius: 28px;
+
+  ${({ $isFormCompleted }) => $isFormCompleted ? 
+  css`
+    border: 1px solid var(--main-red-red-50-main, #FF7F7F);
+    background: rgba(255, 127, 127, 0.25);
+    color: ${({ theme }) => theme.colors.Main_Red};
+  `
+  : 
+  css`
+    border: 1px solid rgba(237, 241, 245, 0.25);
+    background: rgba(237, 241, 245, 0.25);
+    color: rgba(237, 241, 245, 0.25);
+  `
+};
+  
+
+/* Subhead/Subhead 3-2 */
+  ${({ theme }) => theme.fonts.Subhead_3_2}
 `
