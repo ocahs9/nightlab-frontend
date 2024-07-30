@@ -40,7 +40,7 @@ const KakaoLogin = () => {
           console.error('Error:', error);
           alert('로그인에 실패했습니다. 다시 시도해 주세요.');
           alert("지금은 테스트 중이므로, 그냥 로그인 처리 되었다고 가정합니다.")
-          localStorage.setItem('user', JSON.stringify({acceessToken: "test", refreshToken: "referhesh"}));
+          localStorage.setItem('user', JSON.stringify({acceess_token: "test", refresh_token: "referhesh"}));
           setReadyLogin(true);
         }
       } else {

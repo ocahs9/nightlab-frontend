@@ -78,8 +78,6 @@ export const Input = styled.input`
   background: rgba(237, 241, 245, 0.25);
   color: white;
   ${({ theme }) => theme.fonts.Body_1_2};
-
-  
 `
 
 export const Btn = styled.button`
