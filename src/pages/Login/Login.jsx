@@ -39,7 +39,7 @@ const Login = () => {
       </S.LoginTitleExplanation>
       <S.LoginGraphic imgSrc={BeforLogin}>아직 내용 없음</S.LoginGraphic>
       <S.LoginSubTitle>나의 야작 메이트, LOGO, 슬로건</S.LoginSubTitle>
-      <S.LoginButton $imgsrc = {kakaoButtonImg} onClick={()=>handleLoginBtn("/login/school")}/>
+      <S.LoginButton $imgsrc = {kakaoButtonImg} onClick={()=>handleLoginBtn("/school")}/>
     </S.LoginWrapper>
   )
 }

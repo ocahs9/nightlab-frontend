@@ -1,6 +1,7 @@
 import KakaoLogin from "@pages/KakaoLogin/KakaoLogin";
 import Login from "@pages/Login/Login";
 import LoginSchool from "@pages/LoginSchool/LoginSchool";
+import ProfileSetup from "@pages/ProfileSetup/ProfileSetup";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // 예시
 //import Search from "./pages/Search/Search";
@@ -12,7 +13,8 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login/>}/>
-        <Route path="/login/school" element={<LoginSchool/>}/>
+        <Route path="/school" element={<LoginSchool/>}/>
+        <Route path="/profile-setup" element={<ProfileSetup/>}/>,
         <Route path="/oauth/callback/kakao" element={<KakaoLogin/>} />,
         {/* 
         <Route path="/" element={<Main />} />
