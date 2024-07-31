@@ -23,7 +23,7 @@ export const BodyWrapper = styled.div`
 
 export const TextWrapper = styled.div`
   display: flex;
-  width: 29rem; //그냥 조금 늘림 
+  width: 39rem; //그냥 조금 늘림 -> 확 늘림 (29에서 39로)
   flex-direction: column;
   align-items: center;
   gap: 12px;
@@ -37,30 +37,6 @@ export const Title = styled.span`
 export const SubTitle = styled.span`
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => theme.fonts.Body_2_2};
-`
-
-export const InputWrapper = styled.div`
-  display: flex;
-  padding: 28px 16px 0px 16px;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-`
-
-export const DropDown = styled.div`
-  display: flex;
-  width: 358px;
-  height: 52px;
-  padding: 16px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  border-radius: 8px;
-  border: 1px solid var(--Grayscale-Gray_10, #EDF1F5);
-  background: rgba(237, 241, 245, 0.25);
-  color: ${({ $isSelected, theme }) => $isSelected? theme.colors.White : theme.colors.Gray_50}; 
-  ${({ theme }) => theme.fonts.Body_1_2};
 `
 
 export const NextBtn = styled.button`

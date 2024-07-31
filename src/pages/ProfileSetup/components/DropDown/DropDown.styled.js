@@ -19,6 +19,7 @@ export const DropDownMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  cursor: pointer;
 
   border-radius: 8px;
   border: 1px solid ${({ theme, $isOpen }) => $isOpen? theme.colors.Main_Red : theme.colors.Gray_10}; 
