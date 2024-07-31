@@ -64,7 +64,6 @@ export const DropDown = styled.div`
 `
 
 export const NextBtn = styled.button`
-
   display: flex;
   width: 358px;
   height: 56px;
