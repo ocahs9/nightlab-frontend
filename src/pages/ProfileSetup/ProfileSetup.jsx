@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./ProfileSetup.styled";
+import Complete from "./components/Complete/Complete";
 import DropDown from "./components/DropDown/DropDown";
 import NickName from "./components/NickName/NickName";
 import ProfileImage from "./components/ProfileImage/ProfileImage";
@@ -37,11 +39,15 @@ const ProfileSetup = () => {
     }
     */
   }
+  const navigate = useNavigate();
+  const handleGotoMain = () => {
+    navigate("/main");
+  }
 
   
   return (
-    <S.ProfileSetupWrapper $gap={step===2 && "4.4"}>
-      <S.BodyWrapper $gap={step===2 && "2.8"}>
+    <S.ProfileSetupWrapper $gap={step===2 ? "4.4" : step===3 && "2.8"}>
+      <S.BodyWrapper $gap={step===2 ? "2.8" : step===3 && "2.4"}>
         {
           step === 0 &&<>
           <S.TextWrapper>
@@ -71,8 +77,15 @@ const ProfileSetup = () => {
             <S.SubTitle>마이페이지에서 수정할 수 있어요</S.SubTitle>
           </S.TextWrapper>
           <ProfileImage profile={profile} setProfile={setProfile}/>
-            
-          
+        </>
+        }
+        {
+          step === 3 &&<>
+          <S.TextWrapper>
+            <S.Title>환영합니다!</S.Title>
+            <S.SubTitle>Night Lab과 함께 건강한 야작을 해봐요</S.SubTitle>
+          </S.TextWrapper>
+          <Complete/>
         </>
         }
         
@@ -94,7 +107,7 @@ const ProfileSetup = () => {
         </S.NextBtn>
       }
       {step === 3 && 
-        <S.NextBtn onClick={ handleNextButton} disabled={college===""} $isFormCompleted={college!==""}>
+        <S.NextBtn onClick={handleGotoMain} disabled={false} $isFormCompleted={true}>
           메인으로
         </S.NextBtn>
       }

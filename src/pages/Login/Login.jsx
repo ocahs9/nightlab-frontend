@@ -1,5 +1,6 @@
 import kakaoButtonImg from "@assets/images/kakao_login_medium_narrow.png";
-import BeforLogin from "@assets/images/Login_Lighthouse.png";
+//import BeforLogin from "@assets/images/Login_Lighthouse.png";
+import BeforLogin from "@assets/svgs/light_house_before.svg";
 import { navigateAtom } from "@stores/navigate";
 import { requestKakaoLogin } from "@utils/requestKakao";
 import { useAtom } from "jotai";
