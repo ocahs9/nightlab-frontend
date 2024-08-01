@@ -9,7 +9,7 @@ export const ProfileSetupWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 26.4rem;
+  gap: ${({ $gap }) => $gap? `${$gap}rem` : "26.4rem"}; 
 `
 
 export const BodyWrapper = styled.div`
@@ -18,7 +18,7 @@ export const BodyWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6.8rem;
+  gap: ${({ $gap }) => $gap? `${$gap}rem`:"6.8rem"}; 
 `
 
 export const TextWrapper = styled.div`
