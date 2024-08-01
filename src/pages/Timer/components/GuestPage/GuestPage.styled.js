@@ -79,5 +79,11 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: 135%; /* 21.6px */
+
+  &:hover{
+    border: 1px solid var(--main-red-red-50-main, #FF7F7F);
+    background: rgba(255, 127, 127, 0.25);
+    color: ${({ theme }) => theme.colors.Main_Red};
+  }
 `
 
