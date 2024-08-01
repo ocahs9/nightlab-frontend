@@ -38,6 +38,7 @@ export const SubTitle = styled.span`
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => theme.fonts.Body_2_2};
   white-space: pre-line;  //개행 인식하기 위해서
+  text-align: center;
 `
 
 export const GraphicImg = styled.div`
