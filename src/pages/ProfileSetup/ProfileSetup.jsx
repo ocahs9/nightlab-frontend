@@ -21,6 +21,7 @@ const ProfileSetup = () => {
 
   const handleSetProfileComplete = async() => {
     setStep((prev)=>prev+1);
+    localStorage.setItem("isSetComplete", true);
     /*
     try{
       const response = await post("/auth/signup", 
@@ -32,12 +33,15 @@ const ProfileSetup = () => {
       )
       console.log(response);
       setStep((prev)=>prev+1);
+      localStorage.setItem("isSetComplete", true);
+
     }
     catch(error){
       //console.error("Error",error);
       alert(error.response.data.detail);
     }
     */
+
   }
   const navigate = useNavigate();
   const handleGotoMain = () => {

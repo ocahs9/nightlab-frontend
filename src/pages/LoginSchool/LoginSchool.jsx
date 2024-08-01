@@ -7,6 +7,19 @@ const LoginSchool = () => {
   //가장 먼저, 로그인은 되어 있는데, 학교는 입력 안했는지 살펴볼 것
   //만약 학교 입력은 되어 있으면 바로 main으로 건너 뛰는 로직 필요
   //atom 사용해야할 것이라고 추측.
+  //일단 로컬스토리지로 구현
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const isSetComplete = localStorage.getItem("isSetComplete");
+    if(isSetComplete){
+      navigate("/main");
+    }
+  },[])
+
+
+  
+
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [emailCode, setEmailCode] = useState("");
@@ -80,7 +93,6 @@ const LoginSchool = () => {
     */
   }
 
-  const navigate = useNavigate();
   const handleNextButton = () => {
     navigate("/profile-setup");
   }
