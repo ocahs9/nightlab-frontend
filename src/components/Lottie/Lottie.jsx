@@ -1,6 +1,6 @@
 import Lottie from "react-lottie";
 
-import lightHouse from "../../animations/testLottie.json";
+import lightHouse from "../../animations/main_graphic.json";
 import timerGraphic from "../../animations/testLottie-2.json";
 
 import * as L from "./Lottie.styled";
