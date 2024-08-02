@@ -25,20 +25,39 @@ const Header = ({ toggleMenu }) => {
     navigate("/");
   };
 
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const handleReportClick = () => {
+    navigate("/report");
+  };
+
+  const handleTimerClick = () => {
+    navigate("/timer");
+  };
+
+  const handleMyPageClick = () => {
+    navigate("/mypage");
+  };
+
   return (
     <H.Container>
       <H.NavBar>
         {header.showLogo && (
-          <Link to="/">
-            <img src={mainLogo} alt="MainLogo" className="mainLogo" />
-          </Link>
+          <img
+            src={mainLogo}
+            alt="MainLogo"
+            className="mainLogo"
+            onClick={handleHomeClick}
+          />
         )}
         {isAuthenticated ? (
           <H.Options>
             {header.showLoginButton && (
-              <Link to="/">
-                <button className="login-btn">로그아웃</button>
-              </Link>
+              <button className="login-btn" onClick={handleHomeClick}>
+                로그아웃
+              </button>
             )}
             {header.showHamburgerButton && (
               <>
@@ -57,9 +76,9 @@ const Header = ({ toggleMenu }) => {
         ) : (
           <H.Options>
             {header.showLoginButton && (
-              <Link to="/login">
-                <button className="login-btn">로그인</button>
-              </Link>
+              <button className="login-btn" onClick={handleLoginClick}>
+                로그인
+              </button>
             )}
             {header.showHamburgerButton && (
               <>
@@ -95,20 +114,18 @@ const Header = ({ toggleMenu }) => {
           }}
         >
           <li>실시간 유저 수 보기</li>
+          <li onClick={handleTimerClick}>작업 타이머</li>
+          <li onClick={handleReportClick} disabled={!isAuthenticated}>
+            작업 패턴 분석 리포트
+          </li>
 
-          <Link to="/timer">
-            <li>작업 타이머</li>
-          </Link>
-
-          <Link to="/report">
-            <button disabled={!isAuthenticated}>작업 패턴 분석 리포트</button>
-          </Link>
-
-          <Link to="/mypage">
-            <button className="last-menu" disabled={!isAuthenticated}>
-              마이페이지
-            </button>
-          </Link>
+          <li
+            className="last-menu"
+            onClick={handleMyPageClick}
+            disabled={!isAuthenticated}
+          >
+            마이페이지
+          </li>
         </H.MenuItems>
       )}
     </H.Container>

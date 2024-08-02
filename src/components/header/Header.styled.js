@@ -9,11 +9,11 @@ export const Container = styled.div`
 export const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 
   width: 375px;
 
-  margin-top: 32px;
+  /* margin-top: 32px; */
   padding: 8px 16px;
 
   /* position: fixed;
@@ -23,6 +23,7 @@ export const NavBar = styled.div`
 
   .mainLogo {
     width: 150px;
+    margin-top: 12px;
   }
 `;
 
@@ -45,7 +46,7 @@ export const Options = styled.div`
     height: 28px;
 
     padding: 2px 14px;
-    margin-right: 12px;
+    margin: 10px 16px 10px 0;
 
     color: ${({ theme }) => theme.colors.White};
     ${({ theme }) => fontStyles(theme.fonts.Subhead_4)}
@@ -87,9 +88,11 @@ export const HamburgerButton = styled.label`
 
   position: relative;
 
-  margin: 0 8px;
+  margin: 10px 16px 10px 0;
 
   span {
+    display: inline-block;
+
     width: 24px;
     height: 3px;
 
