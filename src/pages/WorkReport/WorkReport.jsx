@@ -86,9 +86,9 @@ const WorkReport = () => {
       {!isMenuOpen && (
         <>
           <WorkPattern
-            // userName={reportData.user_name}
-            // collegeComparison={reportData.college_comparison}
-            // totalAverage={reportData.total_average}
+          // userName={reportData.user_name}
+          // collegeComparison={reportData.college_comparison}
+          // totalAverage={reportData.total_average}
           />
           <Comparison />
           <MyWorkTime />
