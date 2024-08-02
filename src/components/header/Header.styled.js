@@ -32,13 +32,6 @@ export const Options = styled.div`
   justify-content: center;
   align-items: center;
 
-  a {
-    display: block;
-
-    width: 80px;
-    height: 28px;
-  }
-
   .login-btn {
     display: inline-block;
 
@@ -46,7 +39,7 @@ export const Options = styled.div`
     height: 28px;
 
     padding: 2px 14px;
-    margin: 10px 16px 10px 0;
+    margin: 10px 4px 10px 0;
 
     color: ${({ theme }) => theme.colors.White};
     ${({ theme }) => fontStyles(theme.fonts.Subhead_4)}
@@ -83,24 +76,25 @@ export const Options = styled.div`
 `;
 
 export const HamburgerButton = styled.label`
+  display: inline-block;
+
   width: 24px;
   height: 24px;
 
   position: relative;
 
-  margin: 10px 16px 10px 0;
+  margin: 10px 16px;
 
   span {
-    display: inline-block;
-
-    width: 24px;
+    width: 22px;
     height: 3px;
 
     margin-top: 10px;
 
-    background-color: #ffffff;
-
     position: absolute;
+    left: 0;
+
+    background-color: ${({ theme }) => theme.colors.White};
 
     transition: 0.3s ease-in-out;
 
@@ -109,9 +103,11 @@ export const HamburgerButton = styled.label`
       content: "";
       position: absolute;
 
-      width: 24px;
+      width: 22px;
       height: 3px;
-      background-color: #ffffff;
+
+      background-color: ${({ theme }) => theme.colors.White};
+
       transition: 0.3s ease-in-out;
     }
 

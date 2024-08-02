@@ -42,7 +42,7 @@ const Header = ({ toggleMenu }) => {
   };
 
   return (
-    <H.Container>
+    <>
       <H.NavBar>
         {header.showLogo && (
           <img
@@ -128,7 +128,7 @@ const Header = ({ toggleMenu }) => {
           </li>
         </H.MenuItems>
       )}
-    </H.Container>
+    </>
   );
 };
 

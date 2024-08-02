@@ -1,6 +1,6 @@
 import Lottie from "react-lottie";
 
-import lightHouse from "../../animations/main_graphic.json";
+import lightHouse from "../../animations/testLottie.json";
 import timerGraphic from "../../animations/testLottie-2.json";
 
 import * as L from "./Lottie.styled";
@@ -17,7 +17,14 @@ export const LightHouseGraphic = () => {
 
   return (
     <>
-      <Lottie options={defaultOptions} />
+      <div
+        style={{
+          width: "264px",
+          height: "434px",
+        }}
+      >
+        <Lottie options={defaultOptions} />
+      </div>
     </>
   );
 };
@@ -36,9 +43,9 @@ export const EnterTimerGraphic = () => {
     <>
       <div
         style={{
-          width: "358px",
+          width: "360px",
           height: "317px",
-          margin: "48px auto",
+          margin: "16px auto 24px",
         }}
       >
         <Lottie options={defaultOptions} />
