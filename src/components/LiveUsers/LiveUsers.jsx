@@ -11,7 +11,7 @@ const LiveUsers = () => {
         기준,
         <br />
         127명이 작업 등대에 있어요.
-      </LU.Container> 
+      </LU.Container>
     </>
   );
 };
