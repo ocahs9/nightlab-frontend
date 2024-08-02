@@ -1,17 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
-import App from './App.jsx';
+import App from "./App.jsx";
 import Router from "./Router.jsx";
 import GlobalStyle from "./styles/global.js";
 import theme from "./styles/theme.js";
+import { ContextProvider } from "./contexts/WholeContext.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalStyle/>
-      <Router/>
-      <App />
+      <ContextProvider>
+        <GlobalStyle />
+        <Router />
+        <App />
+      </ContextProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
