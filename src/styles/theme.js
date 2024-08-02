@@ -1,3 +1,77 @@
+/**
+ * @typedef {Object} Colors
+ * @property {string} White - #FFFFFF
+ * @property {string} Gray_5 - #FAFAFB
+ * @property {string} Gray_10 - #EDF1F5
+ * @property {string} Gray_20 - #DDE1E8
+ * @property {string} Gray_30 - #BFC2C8
+ * @property {string} Gray_40 - #A3A8AE
+ * @property {string} Gray_50 - #888E94
+ * @property {string} Gray_60 - #6B7276
+ * @property {string} Gray_70 - #515356
+ * @property {string} Gray_80 - #3C3E41
+ * @property {string} Gray_90 - #2C2D30
+ * @property {string} Gray_100 - #181A1B
+ * @property {string} Black - #000000
+ * @property {string} Main_Red - #FF7177
+ * @property {string} Sub_Red_10 - #FEE6E6
+ * @property {string} Sub_Red_20 - #FFCCCC
+ * @property {string} Sub_Red_30 - #FFB3B3
+ * @property {string} Sub_Red_40 - #FF8A8A
+ * @property {string} Sub_Red_50 - #FF7177
+ * @property {string} Sub_Red_60 - #FF4C4C
+ * @property {string} Sub_Red_70 - #FF3333
+ * @property {string} Sub_Red_80 - #FF1A1A
+ * @property {string} Sub_Red_90 - #FF0000
+ * @property {string} Pale_Yellow - #FFEED1
+ * @property {string} Yellow - #FFDD60
+ * @property {string} Lavender - #D1C3F6
+ * @property {string} Violet - #5D6DA6
+ * @property {string} Background_Black - #16181A
+ * @property {string} Opacity_White_25 - rgba(255, 255, 255, 0.25)
+ * @property {string} Opacity_White_50 - rgba(255, 255, 255, 0.50)
+ * @property {string} Opacity_Red_10_25 - rgba(255, 204, 204, 0.25)
+ * @property {string} Opacity_Red_10_70 - rgba(255, 204, 204, 0.70)
+ * @property {string} Opacity_Red_20_70 - rgba(255, 153, 153, 0.70)
+ * @property {string} Opacity_Red_50_25 - rgba(255, 113, 119, 0.25)
+ * @property {string} Opacity_Background_Black_70 - rgba(22, 24, 26, 0.70)
+ */
+
+/**
+ * @typedef {Object} FontStyle
+ * @property {string} fontFamily - The font family
+ * @property {number} fontWeight - The font weight
+ * @property {string} fontSize - The font size
+ * @property {string} lineHeight - The line height
+ * @property {string} letterSpacing - The letter spacing
+ */
+
+/**
+ * @typedef {Object} Fonts
+ * @property {FontStyle} Header_1
+ * @property {FontStyle} Header_2
+ * @property {FontStyle} Header_3
+ * @property {FontStyle} Header_4_1
+ * @property {FontStyle} Header_4_2
+ * @property {FontStyle} Header_5_1
+ * @property {FontStyle} Header_5_2
+ * @property {FontStyle} Subhead_1
+ * @property {FontStyle} Subhead_2_1
+ * @property {FontStyle} Subhead_2_2
+ * @property {FontStyle} Subhead_3_1
+ * @property {FontStyle} Subhead_3_2
+ * @property {FontStyle} Subhead_4
+ * @property {FontStyle} Body_1_1
+ * @property {FontStyle} Body_1_2
+ * @property {FontStyle} Body_2_1
+ * @property {FontStyle} Body_2_2
+ * @property {FontStyle} Caption_1_1
+ * @property {FontStyle} Caption_1_2
+ */
+
+/**
+ * @type {Colors}
+ */
 const colors = {
   /* GrayScale */
   White: "#FFFFFF",
@@ -48,6 +122,9 @@ const colors = {
   Opacity_Background_Black_70: "rgba(22, 24, 26, 0.70)",
 };
 
+/**
+ * @type {Fonts}
+ */
 const fonts = {
   /* Header */
   Header_1: {
