@@ -13,7 +13,7 @@ const LoginSchool = () => {
   useEffect(()=>{
     const isSetComplete = localStorage.getItem("isSetComplete");
     if(isSetComplete){
-      navigate("/main");
+      navigate("/");
     }
   },[])
 
