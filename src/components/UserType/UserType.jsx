@@ -6,26 +6,6 @@ import userGraphic from "../../assets/DummyUserGraphic.svg";
 
 const UserType = () => {
   const [selected, setSelected] = useState("전체 유저");
-  const [data, setData] = useState([]);
-
-  // const [time, setTime] = useState(formatTimeTo12Hour(new Date()));
-
-  // const updateIntervalMinutes = 10;
-  // const updateIntervalms = updateIntervalMinutes * 60000;
-
-  useEffect(() => {
-    const interValid = setInterval(() => {
-      const now = new Date();
-
-      const newDataPoint = {
-        time: formatTimeTo12Hour(now),
-      };
-
-      setData((prevData) => [...prevData, newDataPoint].slice(-6));
-    }, 1000);
-
-    return () => clearInterval(interValid);
-  }, []);
 
   const handleAll = () => {
     setSelected("전체 유저");
