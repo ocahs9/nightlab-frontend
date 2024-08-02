@@ -34,7 +34,7 @@ export const TimerTitle = styled.span`
 
 export const MyStatusWrapper = styled.div`
   display: flex;
-  width: 196px;
+  width: 205px; //196px 인데 그냥 좀 늘림(글자 넘어가서)
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
@@ -91,6 +91,12 @@ export const TimerButton = styled.button`
       border: 1px solid var(--main-red-red-50-main, #FF7F7F);
       background: rgba(255, 127, 127, 0.25);
     }
+  `};
+
+  ${({ $redMode }) => $redMode&& css`
+      color: var(--main-red-red-50-main, #FF7F7F);
+      border: 1px solid var(--main-red-red-50-main, #FF7F7F);
+      background: rgba(255, 127, 127, 0.25);
   `};
   
 
