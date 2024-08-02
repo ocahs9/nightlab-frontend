@@ -21,10 +21,9 @@ export const TopButton = styled.button`
   .top-arrow {
     display: inline-block;
   }
-  
+
   /* .text {
     color: ${({ theme }) => theme.colors.White};
     ${({ theme }) => fontStyles(theme.fonts.Caption_1_2)}
   } */
-
 `;
