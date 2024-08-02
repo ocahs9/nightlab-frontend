@@ -7,6 +7,7 @@ import ProfileSetup from "@pages/ProfileSetup/ProfileSetup";
 import GuestPage from "@pages/Timer/components/GuestPage/GuestPage";
 import Timer from "@pages/Timer/Timer";
 import WorkReport from "@pages/WorkReport/WorkReport";
+import WorkTimer from "@pages/WorkTimer/WorkTimer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // 예시
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path="/oauth/callback/kakao" element={<KakaoLogin />} />,
         <Route path="/unlogin" element={<GuestPage />} />,
         <Route path="/timer" element={<Timer />} />,
+
         <Route path="/report" element={<WorkReport />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
