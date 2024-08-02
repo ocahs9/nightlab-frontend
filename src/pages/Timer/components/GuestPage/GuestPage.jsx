@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import * as S from "./GuestPage.styled";
-import { useEffect } from "react";
-import { useData } from "../../../../contexts/WholeContext";
 import Header from "@components/header/Header";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../../../contexts/WholeContext";
+import * as S from "./GuestPage.styled";
 
 const GuestPage = () => {
   const { setHeader } = useData();
@@ -35,7 +35,7 @@ const GuestPage = () => {
           </S.TextWrapper>
           <S.GraphicImg />
           <S.ButtonWrapper>
-            <S.Button onClick={() => navigate("/")}>로그인하기</S.Button>
+            <S.Button onClick={() => navigate("/login")}>로그인하기</S.Button>
             <S.Button onClick={() => navigate("/timer")}>
               무시하고 타이머 시작
             </S.Button>
