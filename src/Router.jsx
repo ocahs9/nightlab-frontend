@@ -20,6 +20,9 @@ const Router = () => {
         <Route path="/school" element={<LoginSchool />} />
         <Route path="/profile-setup" element={<ProfileSetup />} />,
         <Route path="/oauth/callback/kakao" element={<KakaoLogin />} />,
+        <Route path="/unlogin" element={<GuestPage />} />,
+        <Route path="/timer" element={<Timer />} />,
+        
         <Route path="/report" element={<WorkReport />} />
         <Route path="/timer" element={<WorkTimer />} />
         <Route path="/mypage" element={<MyPage />} />
