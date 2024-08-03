@@ -1,3 +1,5 @@
+import { get } from "@apis/index";
+import { IcRefresh } from "@assets/svgs/index";
 import { useEffect, useState } from "react";
 import * as S from "./Timer.styled";
 
@@ -6,8 +8,29 @@ const Timer = () => {
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
 
+  //새로고침 버튼 누를 때마다 렌더링되도록 하여 실행되도록 할거임
+  const [userMemoDatas, setUserMemoDatas] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
+  //memo는 배열,
+  //id, content, user_name, profile, college, timer가 존재함
+  useEffect(()=>{
+    const getUserMemoData = async() => {
+      try{
+        const response = await get("/api/memo/all");
+        //console.log(response);
+        console.log(response.data.data.memo);
+        setUserMemoDatas(response.data.data.memo);
+      }catch(error){
+        console.error(error);
+        console.log("타이머에서 유저 데이터 가져오는데 에러 발생");
+      }
+      
+    }
+   getUserMemoData();
+  },[refresh])
 
+  
   //타이머 시작 시 시간 증가하고, 중단 시 시간 증가하지 않는 로직 구성
   useEffect(()=>{
     let interval = null;
@@ -50,6 +73,10 @@ const Timer = () => {
     }
   }
 
+  const handleRefreshMember = () => {
+    setRefresh((prev)=>!prev);
+  }
+
   const formatWorkTime = (workTime) => {
     const hours = Math.floor(workTime / 3600).toString().padStart(2, '0');
     const minutes = Math.floor((workTime % 3600) / 60).toString().padStart(2, '0');
@@ -77,8 +104,58 @@ const Timer = () => {
           <S.TimerSubTitle>휴식 버튼으로 작업 타이머를 중지하지 않고 휴식만 할 수 있어요</S.TimerSubTitle>
         </S.TimerButtonWrapper>
       </S.TimerWrapper>
-      <S.OnlineMemberWrapper>
 
+
+      <S.OnlineMemberWrapper>
+        <S.OnlineMemeberTextBox>
+          <S.OnlineMemberText>등대지기 모아보기</S.OnlineMemberText>
+          <S.OnlineRefreshButton onClick={handleRefreshMember}>
+            <IcRefresh/>
+          </S.OnlineRefreshButton>
+        </S.OnlineMemeberTextBox>
+
+        <S.MyOnlineCardWrapper>
+          <S.MyOnlineCard>
+            <S.MyCardProfileWrapper>
+              <S.MyCardProfileText>MY</S.MyCardProfileText>
+              <S.MyCardProfileGraphic $profile={"gentle"}/>
+            </S.MyCardProfileWrapper>
+            <S.MyCardInputWrapper>
+              <S.MyCardInputText>MEMO</S.MyCardInputText>
+              <S.MyCardInputContainer>
+                <S.MyCardTextArea placeholder={"상태메시지를 입력하세요."}/>
+                <S.MyCardInputButton>완료</S.MyCardInputButton>
+              </S.MyCardInputContainer>
+            </S.MyCardInputWrapper>
+          </S.MyOnlineCard>
+        </S.MyOnlineCardWrapper>
+
+        <S.Line/>
+
+        <S.OnlineMemberLayout>
+          <S.OthersOnlineCardWrapper>
+            
+            {userMemoDatas?.map((obj,idx)=>
+              //id, content, user_name, profile, college, timer가 존재함
+              <S.OtherCardWrapper key = {`otherMember_${idx}`}>
+                <S.OtherCardProfileGraphic $profile={obj.profile}/>
+                <S.OtherCardTextDivBox>
+                  <S.OtherCardTextDiv>
+                    {obj.content}
+                  </S.OtherCardTextDiv>
+                  <S.OtherCardSubTextBox>
+                      <S.OtherCardSubText>{obj.user_name}</S.OtherCardSubText>
+                      <S.OtherCardSubText>{obj.college}</S.OtherCardSubText>
+                      <S.OtherCardSubText>{`${obj.timer} 작업`}</S.OtherCardSubText>
+                    </S.OtherCardSubTextBox>
+                </S.OtherCardTextDivBox>
+            </S.OtherCardWrapper>
+            )}
+            
+
+            
+          </S.OthersOnlineCardWrapper>
+        </S.OnlineMemberLayout>
       </S.OnlineMemberWrapper>
     </S.TimerPageWrapper>
   )

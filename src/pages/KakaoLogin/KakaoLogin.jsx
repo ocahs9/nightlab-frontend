@@ -23,11 +23,12 @@ const KakaoLogin = () => {
   useEffect(() => {
     const sendAuthorizationCode = async () => {
       const code = new URL(window.location.href).searchParams.get('code');
+      console.log(code);
       if (code) {
         try {
           const response = await axios.post(
             //Backend Full API URL - Access Token Will be returned.
-            'https://8mtbdhsm-8000.asse.devtunnels.ms/auth/kakao/login',
+            'http://nightlab.kro.kr:8000/auth/kakao/login',
             { access_code: code },
             //{ params: { code: code } }
           );
@@ -52,7 +53,7 @@ const KakaoLogin = () => {
     sendAuthorizationCode();
   }, [navigate]);
 
-
+  
   /*
   const navigate = useNavigate();
   //   const [userData, setUserData] = useState(null);

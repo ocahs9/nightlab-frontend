@@ -1,8 +1,9 @@
+import { post } from "@apis/index";
+import Header from "@components/header/Header";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./LoginSchool.styled";
 import { useData } from "../../contexts/WholeContext";
-import Header from "@components/header/Header";
+import * as S from "./LoginSchool.styled";
 
 const LoginSchool = () => {
   //가장 먼저, 로그인은 되어 있는데, 학교는 입력 안했는지 살펴볼 것
@@ -56,11 +57,11 @@ const LoginSchool = () => {
   //이메일 확인 요청을 쏘는 로직
   const handleEmailButton = async (emailAddress) => {
     //이 두줄은 나중에 바로 지울 예정
-    console.log("email 확인 버튼 클릭");
-    setIsMailSended(true);
+    //console.log("email 확인 버튼 클릭");
+    //setIsMailSended(true);
 
     //아래의 코드는 api 연결할 때 주석 해제하여 그대로 사용할 예정
-    /*
+    
     try{
       const response = await post("auth/verify", 
         {
@@ -75,15 +76,15 @@ const LoginSchool = () => {
       alert(error.response.data.detail);
       console.error("Error:",error);
     }
-    */
+    
   };
 
   const handleEmailCodeButton = async (emailCode) => {
     //이 두줄은 나중에 바로 지울 예정
-    console.log("인증번호 확인 요청 버튼 클릭");
-    setIsCertificated(true);
+    //console.log("인증번호 확인 요청 버튼 클릭");
+    //setIsCertificated(true);
 
-    /*
+    
     //아래의 코드는 api 연결할 때 주석 해제하여 그대로 사용할 예정
     try{
       const response = await post("auth/verify/check", 
@@ -98,7 +99,7 @@ const LoginSchool = () => {
       alert(error.response.data.detail);
       console.error("Error:",error);
     }
-    */
+    
   };
 
   const handleNextButton = () => {

@@ -1,12 +1,13 @@
+import { post } from "@apis/index";
+import Header from "@components/header/Header";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useData } from "../../contexts/WholeContext";
 import * as S from "./ProfileSetup.styled";
 import Complete from "./components/Complete/Complete";
 import DropDown from "./components/DropDown/DropDown";
 import NickName from "./components/NickName/NickName";
 import ProfileImage from "./components/ProfileImage/ProfileImage";
-import { useData } from "../../contexts/WholeContext";
-import Header from "@components/header/Header";
 
 const ProfileSetup = () => {
   const { setHeader } = useData();
@@ -33,9 +34,9 @@ const ProfileSetup = () => {
   };
 
   const handleSetProfileComplete = async () => {
-    setStep((prev) => prev + 1);
-    localStorage.setItem("isSetComplete", true);
-    /*
+    //setStep((prev) => prev + 1);
+    //localStorage.setItem("isSetComplete", true);
+    // 이부분도 api 연결시 주석화/ 비주석화 하기
     try{
       const response = await post("/auth/signup", 
         {
@@ -53,7 +54,7 @@ const ProfileSetup = () => {
       //console.error("Error",error);
       alert(error.response.data.detail);
     }
-    */
+    
   };
   const navigate = useNavigate();
   const handleGotoMain = () => {
