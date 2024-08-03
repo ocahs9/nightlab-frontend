@@ -49,7 +49,7 @@ export const Options = styled.div`
   }
 
   .close-btn {
-    margin-right: 8px;
+    margin: 10px 16px 10px 0;
   }
 
   /* input 태그를 사용해 햄버거 버튼 모양을 X로 상호 변형 */
@@ -63,6 +63,7 @@ export const Options = styled.div`
   #menu-toggle:checked + #menu-button span::before {
     transform: rotate(-45deg);
     top: 0;
+    left: 0;
   }
 
   #menu-toggle:checked + #menu-button span {
@@ -72,6 +73,7 @@ export const Options = styled.div`
   #menu-toggle:checked + #menu-button span::after {
     transform: rotate(45deg);
     top: 0;
+    left: 0;
   }
 `;
 
@@ -92,6 +94,7 @@ export const HamburgerButton = styled.label`
     margin-top: 10px;
 
     position: absolute;
+    top: 0;
     left: 0;
 
     background-color: ${({ theme }) => theme.colors.White};

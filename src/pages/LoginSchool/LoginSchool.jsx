@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./LoginSchool.styled";
-
+import { useData } from "../../contexts/WholeContext";
+import Header from "@components/header/Header";
 
 const LoginSchool = () => {
   //가장 먼저, 로그인은 되어 있는데, 학교는 입력 안했는지 살펴볼 것
   //만약 학교 입력은 되어 있으면 바로 main으로 건너 뛰는 로직 필요
   //atom 사용해야할 것이라고 추측.
   //일단 로컬스토리지로 구현
+
+  const { setHeader } = useData();
+
   const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
+    setHeader({
+      showLogo: true,
+      showLoginButton: false,
+      showHamburgerButton: false,
+      showCloseButton: true,
+    });
+
     const isSetComplete = localStorage.getItem("isSetComplete");
-    if(isSetComplete){
+    if (isSetComplete) {
       navigate("/");
     }
-  },[])
-
-
-  
+  }, []);
 
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
@@ -26,27 +34,27 @@ const LoginSchool = () => {
   const [isMailSended, setIsMailSended] = useState(false);
   const [isCertificated, setIsCertificated] = useState(false);
 
-  useEffect(()=>{
-    if(isMailSended && isCertificated){
+  useEffect(() => {
+    if (isMailSended && isCertificated) {
       setIsFormCompleted(true);
     }
-  },[isMailSended, isCertificated])
-  
+  }, [isMailSended, isCertificated]);
+
   const handleChangeEmailInput = (e) => {
     setEmailAddress(e.target.value);
-  }
+  };
   const handleChangeEmailCode = (e) => {
     setEmailCode(e.target.value);
-  }
+  };
 
   //디버깅을 위한 코드
-  useEffect(()=>{
+  useEffect(() => {
     console.log(emailAddress);
     console.log(emailCode);
-  },[emailAddress, emailCode])
+  }, [emailAddress, emailCode]);
 
   //이메일 확인 요청을 쏘는 로직
-  const handleEmailButton = async(emailAddress) => {
+  const handleEmailButton = async (emailAddress) => {
     //이 두줄은 나중에 바로 지울 예정
     console.log("email 확인 버튼 클릭");
     setIsMailSended(true);
@@ -68,9 +76,9 @@ const LoginSchool = () => {
       console.error("Error:",error);
     }
     */
-  }
+  };
 
-  const handleEmailCodeButton = async(emailCode) => {
+  const handleEmailCodeButton = async (emailCode) => {
     //이 두줄은 나중에 바로 지울 예정
     console.log("인증번호 확인 요청 버튼 클릭");
     setIsCertificated(true);
@@ -91,64 +99,69 @@ const LoginSchool = () => {
       console.error("Error:",error);
     }
     */
-  }
+  };
 
   const handleNextButton = () => {
     navigate("/profile-setup");
-  }
-  
-  
+  };
+
   return (
-    <S.LoginSchoolWrapper>
-      <S.BodyWrapper>
-        <S.TextWrapper>
-          <S.Title>학교 메일을 입력해 주세요</S.Title>
-          <S.SubTitle>첫 로그인의 경우, 대학생 인증이 필요해요</S.SubTitle>
-        </S.TextWrapper>
+    <>
+      <Header />
+      <S.LoginSchoolWrapper>
+        <S.BodyWrapper>
+          <S.TextWrapper>
+            <S.Title>학교 메일을 입력해 주세요</S.Title>
+            <S.SubTitle>첫 로그인의 경우, 대학생 인증이 필요해요</S.SubTitle>
+          </S.TextWrapper>
 
-        <S.InputWrapper>
-          <S.InputLayout>
-            <S.InputTitle>학교 메일 주소</S.InputTitle>
-            <S.InputAndBtnWrapper>
-              <S.Input 
-                onChange={handleChangeEmailInput} 
-                value={emailAddress} 
-                placeholder="학교 이메일을 입력해주세요" >
-              </S.Input>
-              <S.Btn onClick={()=>handleEmailButton(emailAddress)}>인증하기</S.Btn>
-            </S.InputAndBtnWrapper>
-          </S.InputLayout>
-
-          <S.InputLayoutWrapper>
+          <S.InputWrapper>
             <S.InputLayout>
-              <S.InputTitle>인증번호</S.InputTitle>
+              <S.InputTitle>학교 메일 주소</S.InputTitle>
               <S.InputAndBtnWrapper>
-                <S.Input 
-                  onChange={handleChangeEmailCode}
-                  value={emailCode}
-                  placeholder="인증번호를 입력해 주세요"
-                  
-                />
-                <S.Btn onClick={()=>handleEmailCodeButton(emailCode)}>확인</S.Btn>
+                <S.Input
+                  onChange={handleChangeEmailInput}
+                  value={emailAddress}
+                  placeholder="학교 이메일을 입력해주세요"
+                ></S.Input>
+                <S.Btn onClick={() => handleEmailButton(emailAddress)}>
+                  인증하기
+                </S.Btn>
               </S.InputAndBtnWrapper>
             </S.InputLayout>
-            {isCertificated && 
-              <S.VerificationCompleted>
-                인증이 완료되었어요
-              </S.VerificationCompleted>
-            }
-          </S.InputLayoutWrapper>
-        </S.InputWrapper>
-      </S.BodyWrapper>
-      <S.NextBtn 
-        disabled={!isFormCompleted} 
-        $isFormCompleted={isFormCompleted} 
-        onClick={handleNextButton}>
-          다음
-      </S.NextBtn>
-    </S.LoginSchoolWrapper>
-    
-  )
-}
 
-export default LoginSchool
+            <S.InputLayoutWrapper>
+              <S.InputLayout>
+                <S.InputTitle>인증번호</S.InputTitle>
+                <S.InputAndBtnWrapper>
+                  <S.Input
+                    onChange={handleChangeEmailCode}
+                    value={emailCode}
+                    placeholder="인증번호를 입력해 주세요"
+                  />
+                  <S.Btn onClick={() => handleEmailCodeButton(emailCode)}>
+                    확인
+                  </S.Btn>
+                </S.InputAndBtnWrapper>
+              </S.InputLayout>
+              {isCertificated && (
+                <S.VerificationCompleted>
+                  인증이 완료되었어요
+                </S.VerificationCompleted>
+              )}
+            </S.InputLayoutWrapper>
+          </S.InputWrapper>
+        </S.BodyWrapper>
+        <S.NextBtn
+          disabled={!isFormCompleted}
+          $isFormCompleted={isFormCompleted}
+          onClick={handleNextButton}
+        >
+          다음
+        </S.NextBtn>
+      </S.LoginSchoolWrapper>
+    </>
+  );
+};
+
+export default LoginSchool;

@@ -12,6 +12,6 @@ export const Container = styled.div`
 
   .clock {
     display: inline-block;
-    width: 123px;
+    width: 120px;
   }
 `;
