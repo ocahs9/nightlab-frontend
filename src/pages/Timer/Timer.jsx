@@ -1,4 +1,4 @@
-import { get } from "@apis/index";
+import { get, post } from "@apis/index";
 import { IcRefresh } from "@assets/svgs/index";
 import { useEffect, useState } from "react";
 import * as S from "./Timer.styled";
@@ -99,6 +99,32 @@ const Timer = () => {
     return `${hours}:${minutes}:${seconds}`;
   };
 
+  const [isMemoConfirmed, setIsMemoConfirmed]= useState(false);
+  const [content, setContent]= useState("");
+  const memoCreateApi = async() => {
+    try{
+      const response = await post("/api/memo", {
+        content: content
+      });
+      console.log("메모 생성하고 보낸 응답:",response);
+    } catch(error){
+      console.log(error);
+    }
+  }
+  const handleMemoCreate = () => {
+    if(isMemoConfirmed){ //만약 true면 완료가 되어 있는 상태(수정 버튼이 올라와있는 상태)
+      //아무 동작 안함(버튼만 바뀜)
+    }else{ //false일 경우, 즉 수정 버튼 상태에서 눌렀을 경우
+      memoCreateApi();
+    }
+    setIsMemoConfirmed((prev)=>!prev);
+  }
+  const handleMemoOnChange = (e) => {
+    setContent(e.target.value);
+  }
+
+  
+
   //서버로 보내는 로직도 짜야함. 10초마다?
 
   return (
@@ -138,8 +164,8 @@ const Timer = () => {
             <S.MyCardInputWrapper>
               <S.MyCardInputText>MEMO</S.MyCardInputText>
               <S.MyCardInputContainer>
-                <S.MyCardTextArea placeholder={"상태메시지를 입력하세요."}/>
-                <S.MyCardInputButton>완료</S.MyCardInputButton>
+                <S.MyCardTextArea onChange={handleMemoOnChange} disabled={isMemoConfirmed} value={content} placeholder={"상태메시지를 입력하세요."}/>
+                <S.MyCardInputButton onClick={handleMemoCreate} >{isMemoConfirmed ? "수정" : "완료"}</S.MyCardInputButton>
               </S.MyCardInputContainer>
             </S.MyCardInputWrapper>
           </S.MyOnlineCard>
