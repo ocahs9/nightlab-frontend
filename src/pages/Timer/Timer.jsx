@@ -28,6 +28,9 @@ const Timer = () => {
       
     }
     getUserProfile();
+
+    //언마운트시 타이머 중지하도록 설정
+    return () => postTimerStop();
   },[])
   
   useEffect(()=>{
@@ -68,6 +71,11 @@ const Timer = () => {
 
   const handleTimerStopToggle = () => {
     //setIsTimerStart((prev)=>!prev);
+    if(isBreakTime){
+      postTimerRestStop(); //휴식 중단
+    }else{
+      postTimerRestStart(); //휴식 시작
+    }
     setIsBreakTime((prev)=>!prev);
   }
 
@@ -80,16 +88,62 @@ const Timer = () => {
   const handleTimerStartOrReset = () => {
     if(!isTimerStart){ //시작된게 아니라면
       handleTimerStart();
+      postTimerStart();
     }else if(isTimerStart){ //시작되어 있다면 - 작업 중지 : reset
       const confirmCheck = confirm("작업 시간을 초기화하시겠습니까?");
       if(confirmCheck){
         handleTimerReset();
+        postTimerStop();
       }
     }
   }
 
   const handleRefreshMember = () => {
     setRefresh((prev)=>!prev);
+  }
+
+  const postTimerStart = async() => {
+    try{
+      const response = await post("api/timer/start",{
+        start_time : formatWorkTime(workTime)
+      });
+      console.log(response);
+    }catch(e){
+      console.error(e);
+    }
+  }
+
+  const postTimerRestStart = async() => {
+    try{
+      const response = await post("api/timer/rest/start",{
+        rest_time : formatWorkTime(workTime)
+      });
+      console.log(response);
+    }catch(e){
+      console.error(e);
+    }
+  }
+
+  const postTimerRestStop = async() => {
+    try{
+      const response = await post("api/timer/rest/stop",{
+        rest_time : formatWorkTime(workTime)
+      });
+      console.log(response);
+    }catch(e){
+      console.error(e);
+    }
+  }
+
+  const postTimerStop = async() => {
+    try{
+      const response = await post("api/timer/stop",{
+        stop_time : formatWorkTime(workTime)
+      });
+      console.log(response);
+    }catch(e){
+      console.error(e);
+    }
   }
 
   const formatWorkTime = (workTime) => {

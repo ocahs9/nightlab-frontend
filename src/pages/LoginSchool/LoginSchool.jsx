@@ -10,23 +10,9 @@ const LoginSchool = () => {
   //만약 학교 입력은 되어 있으면 바로 main으로 건너 뛰는 로직 필요
   //atom 사용해야할 것이라고 추측.
   //일단 로컬스토리지로 구현
-
+  const [onBoarding, setOnBoarding] = useState(true); //기본은 넘어가도록 설정
   const { setHeader } = useData();
-
-  const navigate = useNavigate();
-
-  const onBoardingApi = async() => {
-    try{
-      const response = await get("/api/onboard");
-      console.log("온보딩으로 넘어갈지 여부: ",response.data.onboarding )
-      return response.data.onboarding;
-    }catch(error){
-      console.error(error);
-      return null;
-    }
-  }
-
-  useEffect(() => {
+  useEffect(()=>{
     setHeader({
       showLogo: true,
       showLoginButton: false,
@@ -34,14 +20,37 @@ const LoginSchool = () => {
       showCloseButton: true,
     });
 
+    onBoardingApi(); //넘어갈지 말지
+  },[])
+
+  const navigate = useNavigate();
+
+  const onBoardingApi = async() => {
+    try{
+      const response = await get("/api/onboard");
+      console.log("온보딩으로 넘어갈지 여부: ",response.data.onboarding )
+      setOnBoarding(response.data.onboarding);
+    }catch(error){
+      console.error(error);
+      return null; //어차피 프로미스 반환할거임
+    }
+  }
+
+  useEffect(() => {
+
     /*
       여기서 온보딩 API 쏘고, 해당 결과를 이용해서 넘어가는 로직 구성하기
      */
-    const isSetNotComplete = onBoardingApi();//localStorage.getItem("isSetComplete");
-    if (!isSetNotComplete) {
+    //const isSetNotComplete = onBoardingApi();//localStorage.getItem("isSetComplete");
+    //console.log("넘어가기전 온보딩:", isSetNotComplete);
+    if (!onBoarding) {
       navigate("/");
     }
-  }, []);
+  }, [onBoarding]);
+
+  
+
+  
 
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
