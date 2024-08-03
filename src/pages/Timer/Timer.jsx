@@ -32,11 +32,13 @@ const Timer = () => {
       }
       
     }
-    getUserProfile();
+    if(isLogin){
+      getUserProfile();
+    }
 
     //언마운트시 타이머 중지하도록 설정
     return () => postTimerStop();
-  },[])
+  },[isLogin])
   
   useEffect(()=>{
     const getUserMemoData = async() => {
@@ -108,47 +110,59 @@ const Timer = () => {
   }
 
   const postTimerStart = async() => {
-    try{
-      const response = await post("api/timer/start",{
-        start_time : formatWorkTime(workTime)
-      });
-      console.log(response);
-    }catch(e){
-      console.error(e);
+    if(isLogin){
+      try{
+        const response = await post("api/timer/start",{
+          start_time : formatWorkTime(workTime)
+        });
+        console.log(response);
+      }catch(e){
+        console.error(e);
+      }
     }
+    
   }
 
   const postTimerRestStart = async() => {
-    try{
-      const response = await post("api/timer/rest/start",{
-        rest_time : formatWorkTime(workTime)
-      });
-      console.log(response);
-    }catch(e){
-      console.error(e);
+    if(isLogin){
+      try{
+        const response = await post("api/timer/rest/start",{
+          rest_time : formatWorkTime(workTime)
+        });
+        console.log(response);
+      }catch(e){
+        console.error(e);
+      }
     }
+    
   }
 
   const postTimerRestStop = async() => {
-    try{
-      const response = await post("api/timer/rest/stop",{
-        rest_time : formatWorkTime(workTime)
-      });
-      console.log(response);
-    }catch(e){
-      console.error(e);
+    if(isLogin){
+      try{
+        const response = await post("api/timer/rest/stop",{
+          rest_time : formatWorkTime(workTime)
+        });
+        console.log(response);
+      }catch(e){
+        console.error(e);
+      }
     }
+    
   }
 
   const postTimerStop = async() => {
-    try{
-      const response = await post("api/timer/stop",{
-        stop_time : formatWorkTime(workTime)
-      });
-      console.log(response);
-    }catch(e){
-      console.error(e);
+    if(isLogin){
+      try{
+        const response = await post("api/timer/stop",{
+          stop_time : formatWorkTime(workTime)
+        });
+        console.log(response);
+      }catch(e){
+        console.error(e);
+      }
     }
+    
   }
 
   const formatWorkTime = (workTime) => {
