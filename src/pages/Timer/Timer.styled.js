@@ -124,5 +124,36 @@ export const TimerSubTitle = styled.div`
   온라인 멤버 부분
 */
 export const OnlineMemberWrapper = styled.article`
+  height: 677px;
+  align-self: stretch;
+`
 
+export const OnlineMemberLayout = styled.div`
+  display: flex;
+  width: 358px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`
+
+export const MyOnlineCardWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+`
+
+export const Line = styled.div`
+  width: 358px;
+  height: 1px;
+  background: #FFF;
+  border-bottom: 1px dotted white;
+`
+
+export const OthersOnlineCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
 `
