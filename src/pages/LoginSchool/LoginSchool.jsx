@@ -1,4 +1,4 @@
-import { post } from "@apis/index";
+import { get, post } from "@apis/index";
 import Header from "@components/header/Header";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,17 @@ const LoginSchool = () => {
 
   const navigate = useNavigate();
 
+  const onBoardingApi = async() => {
+    try{
+      const response = await get("/api/onboard");
+      console.log("온보딩으로 넘어갈지 여부: ",response.data.onboarding )
+      return response.data.onboarding;
+    }catch(error){
+      console.error(error);
+      return null;
+    }
+  }
+
   useEffect(() => {
     setHeader({
       showLogo: true,
@@ -23,8 +34,11 @@ const LoginSchool = () => {
       showCloseButton: true,
     });
 
-    const isSetComplete = localStorage.getItem("isSetComplete");
-    if (isSetComplete) {
+    /*
+      여기서 온보딩 API 쏘고, 해당 결과를 이용해서 넘어가는 로직 구성하기
+     */
+    const isSetNotComplete = onBoardingApi();//localStorage.getItem("isSetComplete");
+    if (!isSetNotComplete) {
       navigate("/");
     }
   }, []);

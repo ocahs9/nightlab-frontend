@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import * as S from "./Timer.styled";
 
 const Timer = () => {
+  const [userProfile, setUserProfile] = useState("");
   const [workTime, setWorkTime] = useState(0);
   const [isTimerStart, setIsTimerStart] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
@@ -14,6 +15,21 @@ const Timer = () => {
 
   //memo는 배열,
   //id, content, user_name, profile, college, timer가 존재함
+
+  useEffect(()=>{
+    const getUserProfile = async() =>{
+      try{
+        const response = await get("/api/mypage");
+        console.log("프로필 응답:",response);
+        setUserProfile(response.data.profile);
+      }catch(error){
+        console.log(error);
+      }
+      
+    }
+    getUserProfile();
+  },[])
+  
   useEffect(()=>{
     const getUserMemoData = async() => {
       try{
@@ -29,7 +45,6 @@ const Timer = () => {
     }
    getUserMemoData();
   },[refresh])
-
   
   //타이머 시작 시 시간 증가하고, 중단 시 시간 증가하지 않는 로직 구성
   useEffect(()=>{
@@ -92,7 +107,7 @@ const Timer = () => {
         <S.TimerTitle>작업 타이머</S.TimerTitle>
         <S.MyStatusWrapper>
           <S.MyStatusTimer>{`${formatWorkTime(workTime)}째 작업 중`}</S.MyStatusTimer>
-          <S.MyStatusGraphic $profile={`gentle`} />
+          <S.MyStatusGraphic $profile={userProfile} />
         </S.MyStatusWrapper>
         <S.TimerButtonWrapper>
           <S.TimerButton onClick={handleTimerStartOrReset} $redMode={isTimerStart}>
@@ -118,7 +133,7 @@ const Timer = () => {
           <S.MyOnlineCard>
             <S.MyCardProfileWrapper>
               <S.MyCardProfileText>MY</S.MyCardProfileText>
-              <S.MyCardProfileGraphic $profile={"gentle"}/>
+              <S.MyCardProfileGraphic $profile={userProfile}/>
             </S.MyCardProfileWrapper>
             <S.MyCardInputWrapper>
               <S.MyCardInputText>MEMO</S.MyCardInputText>
