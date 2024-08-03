@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   /* justify-content: space-around; */
 
-  margin: 42px auto 28px;
+  margin: 40px auto 30px;
 
   /* border: 1px solid ${({ theme }) => theme.colors.White};
   border-right: 0;

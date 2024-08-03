@@ -8,23 +8,17 @@ export const Container = styled.div`
   margin-top: 96px;
 
   .title {
+    margin-left: 16px;
+
     ${({ theme }) => fontStyles(theme.fonts.Header_3)}
     color: ${({ theme }) => theme.colors.White};
   }
 
-  .graphic {
-    width: 100%;
-    height: 317px;
-
-    margin: 16px auto;
-
-    border-radius: 12px;
-  }
-
   .start-btn {
-    width: 100%;
+    width: 358px;
     height: 56px;
-
+    align-self: center;
+    
     padding: 16px 96px;
 
     ${({ theme }) => fontStyles(theme.fonts.Subhead_3_2)}

@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
-import { StyleSheetManager } from "styled-components";
 import * as UT from "./UserType.styled";
 
 import userGraphic from "../../assets/DummyUserGraphic.svg";
 
 const UserType = () => {
-  const [selected, setSelected] = useState("전체 유저");
+  // const [selected, setSelected] = useState("전체 유저");
 
-  const handleAll = () => {
-    setSelected("전체 유저");
-  };
+  // const handleAll = () => {
+  //   setSelected("전체 유저");
+  // };
 
-  const handleMajor = () => {
-    setSelected("같은 전공 유저");
-  };
+  // const handleMajor = () => {
+  //   setSelected("같은 전공 유저");
+  // };
 
   return (
     <>
       <UT.Container>
-        <UT.OptionBar>
+        {/* <UT.OptionBar>
           <UT.Option selected={selected === "전체 유저"} onClick={handleAll}>
             전체유저
           </UT.Option>
@@ -28,16 +27,16 @@ const UserType = () => {
           >
             같은 전공 유저
           </UT.Option>
-        </UT.OptionBar>
+        </UT.OptionBar> */}
 
         <UT.Graphic>
-          {selected === "전체 유저" ? (
-            // <img src={userGraphic} alt="userGraphic" className="graphic" />
-            <UT.GraphicContainer>
-              <UT.UserCount></UT.UserCount>
-              <UT.TimeContainer></UT.TimeContainer>
-            </UT.GraphicContainer>
-          ) : (
+          {/* {selected === "전체 유저" ? (
+            // <img src={userGraphic} alt="userGraphic" className="graphic" /> */}
+          <UT.GraphicContainer>
+            <UT.UserCount></UT.UserCount>
+            <UT.TimeContainer></UT.TimeContainer>
+          </UT.GraphicContainer>
+          {/* ) : (
             <UT.OverlayContainer>
               <img
                 src={userGraphic}
@@ -52,7 +51,7 @@ const UserType = () => {
                 </p>
               </UT.Overlay>
             </UT.OverlayContainer>
-          )}
+          )} */}
         </UT.Graphic>
       </UT.Container>
     </>
