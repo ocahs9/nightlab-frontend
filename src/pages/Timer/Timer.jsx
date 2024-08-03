@@ -1,9 +1,14 @@
 import { get, post } from "@apis/index";
 import { IcRefresh } from "@assets/svgs/index";
+import { checkLogin } from "@utils/checkLogin";
 import { useEffect, useState } from "react";
 import * as S from "./Timer.styled";
 
 const Timer = () => {
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(()=>{
+    setIsLogin(checkLogin());
+  },[])
   const [userProfile, setUserProfile] = useState("");
   const [workTime, setWorkTime] = useState(0);
   const [isTimerStart, setIsTimerStart] = useState(false);
@@ -187,7 +192,7 @@ const Timer = () => {
         <S.TimerTitle>작업 타이머</S.TimerTitle>
         <S.MyStatusWrapper>
           <S.MyStatusTimer>{`${formatWorkTime(workTime)}째 작업 중`}</S.MyStatusTimer>
-          <S.MyStatusGraphic $profile={userProfile} />
+          <S.MyStatusGraphic $profile={isLogin ? userProfile : "gentle"} />
         </S.MyStatusWrapper>
         <S.TimerButtonWrapper>
           <S.TimerButton onClick={handleTimerStartOrReset} $redMode={isTimerStart}>
@@ -210,6 +215,7 @@ const Timer = () => {
         </S.OnlineMemeberTextBox>
 
         <S.MyOnlineCardWrapper>
+          {!isLogin && <S.CantUseDiv>{`로그인해야\n이용할 수 있어요.`}</S.CantUseDiv>}
           <S.MyOnlineCard>
             <S.MyCardProfileWrapper>
               <S.MyCardProfileText>MY</S.MyCardProfileText>

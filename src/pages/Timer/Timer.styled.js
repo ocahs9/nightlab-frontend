@@ -177,11 +177,39 @@ export const OnlineMemberLayout = styled.div`
 
 //내 카드 부분
 export const MyOnlineCardWrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
   align-self: stretch;
 `
+export const CantUseDiv = styled.div`
+  position: absolute;
+  top:0px;
+  left:-10px;
+  z-index: 1;
+  display: inline-flex;
+  width: 380px;
+  height: 132px;
+  padding: 31px 83px;
+  justify-content: center;
+  align-items: center;
+  background: rgba(20, 24, 26, 0.70);
+  backdrop-filter: blur(2px);
+
+  color: var(--main-red-red-50-main, #FF7F7F);
+  text-align: center;
+
+  /* Header/Header 4-1 */
+  font-family: "SUITE Variable";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 145%; /* 34.8px */
+
+  white-space: pre-line;
+`
+
 export const MyOnlineCard = styled.div`
   display: flex;
   align-items: center;
