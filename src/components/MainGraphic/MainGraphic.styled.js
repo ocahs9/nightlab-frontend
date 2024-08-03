@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin: 32px auto;
+  margin: 16px auto;
 
   width: 264px;
 
@@ -23,7 +23,7 @@ export const Slogan = styled.p`
   width: 100%;
   text-align: center;
 
-  margin-top: 12px;
+  margin-top: 16px;
 
   .logo {
     width: 40%;

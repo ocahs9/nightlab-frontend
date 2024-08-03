@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: end;
 
-  margin: 24px auto;
+  margin-bottom: 19px;
 `;
 
 export const TopButton = styled.button`
@@ -20,6 +20,8 @@ export const TopButton = styled.button`
 
   .top-arrow {
     display: inline-block;
+
+    width: 25.8px;
   }
 
   /* .text {

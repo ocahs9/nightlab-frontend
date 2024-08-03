@@ -9,11 +9,11 @@ export const Container = styled.div`
 export const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 
   width: 375px;
 
-  margin-top: 32px;
+  /* margin-top: 32px; */
   padding: 8px 16px;
 
   /* position: fixed;
@@ -23,6 +23,7 @@ export const NavBar = styled.div`
 
   .mainLogo {
     width: 150px;
+    margin-top: 12px;
   }
 `;
 
@@ -31,13 +32,6 @@ export const Options = styled.div`
   justify-content: center;
   align-items: center;
 
-  a {
-    display: block;
-
-    width: 80px;
-    height: 28px;
-  }
-
   .login-btn {
     display: inline-block;
 
@@ -45,7 +39,7 @@ export const Options = styled.div`
     height: 28px;
 
     padding: 2px 14px;
-    margin-right: 12px;
+    margin: 10px 4px 10px 0;
 
     color: ${({ theme }) => theme.colors.White};
     ${({ theme }) => fontStyles(theme.fonts.Subhead_4)}
@@ -55,7 +49,7 @@ export const Options = styled.div`
   }
 
   .close-btn {
-    margin-right: 8px;
+    margin: 10px 16px 10px 0;
   }
 
   /* input 태그를 사용해 햄버거 버튼 모양을 X로 상호 변형 */
@@ -69,6 +63,7 @@ export const Options = styled.div`
   #menu-toggle:checked + #menu-button span::before {
     transform: rotate(-45deg);
     top: 0;
+    left: 0;
   }
 
   #menu-toggle:checked + #menu-button span {
@@ -78,26 +73,31 @@ export const Options = styled.div`
   #menu-toggle:checked + #menu-button span::after {
     transform: rotate(45deg);
     top: 0;
+    left: 0;
   }
 `;
 
 export const HamburgerButton = styled.label`
+  display: inline-block;
+
   width: 24px;
   height: 24px;
 
   position: relative;
 
-  margin: 0 8px;
+  margin: 10px 16px;
 
   span {
-    width: 24px;
+    width: 22px;
     height: 3px;
 
     margin-top: 10px;
 
-    background-color: #ffffff;
-
     position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: ${({ theme }) => theme.colors.White};
 
     transition: 0.3s ease-in-out;
 
@@ -106,9 +106,11 @@ export const HamburgerButton = styled.label`
       content: "";
       position: absolute;
 
-      width: 24px;
+      width: 22px;
       height: 3px;
-      background-color: #ffffff;
+
+      background-color: ${({ theme }) => theme.colors.White};
+
       transition: 0.3s ease-in-out;
     }
 
