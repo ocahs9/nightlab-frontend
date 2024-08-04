@@ -1,4 +1,6 @@
+import { post } from "@apis/index";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./MemberPage.styled";
 const MemberPage = () => {
 
@@ -26,6 +28,37 @@ const MemberPage = () => {
     }))
   }
 
+  const navigate = useNavigate();
+
+  //그냥 귀찮다고 api를 onClick에 반환하는 형식으로 하면 안됨.
+  //내부적으로 실행되어야 함..
+  const todoCreateApi = async() => {
+    console.log("완료버튼");
+    const formattedTodos = Object.values(todos).map((todo)=>({
+      text: todo.text
+    }));
+    try{
+      const response = await post("/api/todo", {
+        todo: formattedTodos
+      });
+      console.log(response);
+      navigate("/timer"); //성공 시 넘어감
+
+    }catch(error){
+      console.log("정상적으로 등록되지 않았습니다.")
+      console.error(error);
+    }
+  }
+
+  const handleCompleteButton = () => {
+    todoCreateApi();
+  }
+
+
+  const handleSkipButton = () => {
+    navigate("/timer");
+  }
+
   return (
     <S.MemberPageWrapper>
       <S.MemberPageLayout>
@@ -48,8 +81,8 @@ const MemberPage = () => {
           </S.GoalBox>
         </S.TopBox>
         <S.ButtonWrapper>
-          <S.Button disabled={!isAnyInput} $isDisabled={!isAnyInput}>완료</S.Button>
-          <S.Button $isDisabled={false}>건너뛰기</S.Button>
+          <S.Button onClick={handleCompleteButton} disabled={!isAnyInput} $isDisabled={!isAnyInput}>완료</S.Button>
+          <S.Button onClick={handleSkipButton} $isDisabled={false}>건너뛰기</S.Button>
         </S.ButtonWrapper>
       </S.MemberPageLayout>
     </S.MemberPageWrapper>
