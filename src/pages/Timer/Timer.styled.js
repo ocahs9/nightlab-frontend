@@ -21,6 +21,7 @@ export const TimerPageWrapper = styled.section`
   타이머 부분
 */
 export const TimerWrapper = styled.article`
+  position: relative;
   height: 646px;
   align-self: stretch;
   display: flex;

@@ -3,6 +3,7 @@ import { IcRefresh } from "@assets/svgs/index";
 import { checkLogin } from "@utils/checkLogin";
 import { useEffect, useState } from "react";
 import * as S from "./Timer.styled";
+import Todo from "./components/Todo/Todo";
 
 const Timer = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -203,6 +204,7 @@ const Timer = () => {
   return (
     <S.TimerPageWrapper>
       <S.TimerWrapper>
+        <Todo/>
         <S.TimerTitle>작업 타이머</S.TimerTitle>
         <S.MyStatusWrapper>
           <S.MyStatusTimer>{`${formatWorkTime(workTime)}째 작업 중`}</S.MyStatusTimer>
