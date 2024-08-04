@@ -43,6 +43,7 @@ export const TodoText = styled.span`
 export const TodoIcon = styled(Ic36)`
   width: 36px;
   height: 36px;
+  cursor: pointer;
 `
 //투두리스트 전체
 export const TodoListWrapper = styled.div`
