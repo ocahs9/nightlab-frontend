@@ -1,6 +1,7 @@
 import { get, post } from "@apis/index";
 import { IcRefresh } from "@assets/svgs/index";
 import { checkLogin } from "@utils/checkLogin";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import * as S from "./Timer.styled";
 import Todo from "./components/Todo/Todo";
@@ -44,7 +45,7 @@ const Timer = () => {
   useEffect(()=>{
     const getUserMemoData = async() => {
       try{
-        const response = await get("/api/memo/all");
+        const response = await axios.get("http://nightlab.kro.kr:8000/api/memo/all");
         //console.log(response);
         console.log(response.data.data.memo);
         setUserMemoDatas(response.data.data.memo);
