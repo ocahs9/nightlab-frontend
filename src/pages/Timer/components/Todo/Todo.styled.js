@@ -1,5 +1,7 @@
+import icon_check_goal from "@assets/svgs/icon_check_goal.svg";
 import pen from "@assets/svgs/icon_pen.svg";
 import pen_red from "@assets/svgs/icon_pen_red.svg";
+import icon_uncheck_goal from "@assets/svgs/icon_uncheck_goal.svg";
 import icon_x from "@assets/svgs/icon_x.svg";
 import icon_x_red from "@assets/svgs/icon_x_red.svg";
 import { Ic36 } from "@assets/svgs/index";
@@ -109,6 +111,12 @@ export const TodoListBoxContent = styled.div`
   align-items: center;
   gap: 7px;
 `
+export const TodoListBoxCheckButton = styled.button`
+  width: 34px;
+  height: 34px;
+  background-image: url(${({ $isCompleted }) => $isCompleted ? icon_check_goal : icon_uncheck_goal});
+`
+
 export const TodoListBoxTextInput = styled.input`
   color: var(--Grayscale-Gray_100, #181A1B);
 

@@ -1,4 +1,4 @@
-import { IcCheckGoal, IcPlusRed, IcUncheckGoal, IcXRed } from "@assets/svgs/index";
+import { IcPlusRed, IcXRed } from "@assets/svgs/index";
 import { useState } from "react";
 import * as S from "./Todo.styled";
 
@@ -105,7 +105,7 @@ const Todo = () => {
             {Object.entries(todos).map(([id,todo])=>(
               <S.TodoListBox key={id}>
               <S.TodoListBoxContent>
-                {todo.completed? <IcCheckGoal onClick={()=>handleToggleCompleted(id)}/> : <IcUncheckGoal onClick={()=>handleToggleCompleted(id)}/>}
+                <S.TodoListBoxCheckButton onClick={()=>handleToggleCompleted(id)} $isCompleted={todo.completed}/>
                 <S.TodoListBoxTextInput
                   disabled={!todo.isEditing} 
                   onChange={handleChangeText(id)}
