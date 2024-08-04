@@ -1,5 +1,6 @@
+import { get } from "@apis/index";
 import { IcPlusRed, IcXRed } from "@assets/svgs/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./Todo.styled";
 
 const Todo = () => {
@@ -12,6 +13,28 @@ const Todo = () => {
     4: {text: '0721 목표작업', completed: false, isEditing: false },
     5: {text: '0721 목표작업', completed: false, isEditing: false },
   })
+
+  const todoGetApi = async() => {
+    try{
+      const response = await get("/api/todo");
+      console.log(response);
+      const apiTodo = response.data.data.todo;
+      const formattedApiTodo = apiTodo.reduce((acc,{id, text, completed})=> {
+        acc[id] = {text, completed, isEditing: false};
+        return acc;
+      },{});
+      
+      setTodos(formattedApiTodo); //로컬 todos 업데이트
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  
+
+  useEffect(()=>{
+    
+  },[])
 
   const handelOpenToggleTodo = () => {
     setIsTodoOpen((prev)=>!prev);
