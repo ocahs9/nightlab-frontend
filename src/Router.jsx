@@ -5,9 +5,9 @@ import LoginSchool from "@pages/LoginSchool/LoginSchool";
 import MyPage from "@pages/MyPage/Mypage";
 import ProfileSetup from "@pages/ProfileSetup/ProfileSetup";
 import GuestPage from "@pages/Timer/components/GuestPage/GuestPage";
+import MemberPage from "@pages/Timer/components/MemberPage/MemberPage";
 import Timer from "@pages/Timer/Timer";
 import WorkReport from "@pages/WorkReport/WorkReport";
-import WorkTimer from "@pages/WorkTimer/WorkTimer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // 예시
@@ -23,7 +23,8 @@ const Router = () => {
         <Route path="/school" element={<LoginSchool />} />
         <Route path="/profile-setup" element={<ProfileSetup />} />,
         <Route path="/oauth/callback/kakao" element={<KakaoLogin />} />,
-        <Route path="/unlogin" element={<GuestPage />} />,
+        <Route path="/unlogin-timer" element={<GuestPage />} />,
+        <Route path="/login-timer" element={<MemberPage/>}/>,
         <Route path="/timer" element={<Timer />} />,
 
         <Route path="/report" element={<WorkReport />} />
