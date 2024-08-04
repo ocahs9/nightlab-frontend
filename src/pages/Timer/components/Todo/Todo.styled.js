@@ -6,7 +6,7 @@ import icon_x from "@assets/svgs/icon_x.svg";
 import icon_x_red from "@assets/svgs/icon_x_red.svg";
 import { Ic36 } from "@assets/svgs/index";
 import todoBackground from "@assets/svgs/todoList_background.svg";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const TodoWrapper = styled.div`
   position: absolute; //TimerWrapper 기준 위치
@@ -21,6 +21,18 @@ export const TodoWrapper = styled.div`
   height: 33rem;
 `
 
+const floatAnimation = keyframes`
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-10px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+`
+
 export const TodoIconWrapper = styled.div`
   display: flex;
   width: 36px;
@@ -28,6 +40,8 @@ export const TodoIconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4px;
+
+  animation: ${floatAnimation} 2s ease-in-out infinite;
 `
 
 export const TodoText = styled.span`
@@ -126,6 +140,12 @@ export const TodoListBoxTextInput = styled.input`
   font-style: normal;
   font-weight: 500;
   line-height: 140%; /* 22.4px */
+
+  width: 224px;
+  
+  ${({ $editing }) => $editing && css`
+    border-bottom: 1px solid ${({ theme }) => theme.colors.Main_Red}; 
+  `};
 `
 
 export const TodoListBoxEdit = styled.div`

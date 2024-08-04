@@ -97,7 +97,7 @@ const Todo = () => {
         isTodoOpen && <S.TodoListWrapper>
         <S.TodoListLayout>
           <S.TodoListHeader>
-            <S.TodoListTitle>목표 작업<IcPlusRed onClick={handleAddTodo}/></S.TodoListTitle>
+            <S.TodoListTitle>목표 작업<IcPlusRed style={{ cursor: 'pointer' }}  onClick={handleAddTodo}/></S.TodoListTitle>
             <S.TodoListCloseBtn onClick={handelOpenToggleTodo}><IcXRed/></S.TodoListCloseBtn>
           </S.TodoListHeader>
 
@@ -108,13 +108,14 @@ const Todo = () => {
                 <S.TodoListBoxCheckButton onClick={()=>handleToggleCompleted(id)} $isCompleted={todo.completed}/>
                 <S.TodoListBoxTextInput
                   disabled={!todo.isEditing} 
+                  $editing={todo.isEditing}
                   onChange={handleChangeText(id)}
                   placeholder={"to-do를 입력해주세요"} 
                   value={todo.text}>
                 </S.TodoListBoxTextInput>
               </S.TodoListBoxContent>
               <S.TodoListBoxEdit>
-                <S.TodoListBoxEditBtn onClick={()=>handleToggleEdit(id)} />
+                <S.TodoListBoxEditBtn $red={todo.isEditing} onClick={()=>handleToggleEdit(id)} />
                 <S.TodoListBoxDeleteBtn onClick={()=>handleDeleteTodo(id)}/>
               </S.TodoListBoxEdit>
             </S.TodoListBox>
