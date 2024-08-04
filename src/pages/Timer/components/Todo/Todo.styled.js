@@ -109,7 +109,7 @@ export const TodoListBoxContent = styled.div`
   align-items: center;
   gap: 7px;
 `
-export const TodoListBoxText = styled.span`
+export const TodoListBoxTextInput = styled.input`
   color: var(--Grayscale-Gray_100, #181A1B);
 
   /* Body/Body 1-1 */
@@ -138,6 +138,9 @@ export const TodoListBoxEditBtn = styled.button`
   background-repeat: no-repeat; /* 이미지 반복 없음 */
   background-position: center; /* 중앙에 위치 */
   //background-size: contain; /* 요소 내에 맞춤 */
+  &:hover{
+    background-image: url(${pen_red});
+  }
 `
 
 export const TodoListBoxDeleteBtn = styled.button`
@@ -149,4 +152,8 @@ export const TodoListBoxDeleteBtn = styled.button`
   padding: 5px 4px 4px 5px;
   justify-content: center;
   align-items: center;
+
+  &:hover{
+    background-image: url(${icon_x_red});
+  }
 `
