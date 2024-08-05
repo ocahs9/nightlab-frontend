@@ -55,7 +55,9 @@ const ProfileSetup = () => {
     }
     */
   };
+
   const navigate = useNavigate();
+  
   const handleGotoMain = () => {
     navigate("/");
   };

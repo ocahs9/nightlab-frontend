@@ -2,12 +2,13 @@ import HomePage from "@pages/Home/Home";
 import KakaoLogin from "@pages/KakaoLogin/KakaoLogin";
 import Login from "@pages/Login/Login";
 import LoginSchool from "@pages/LoginSchool/LoginSchool";
+import ModifyCharacter from "@pages/MyPage/ModifyCharacter/ModifyCharacter";
 import MyPage from "@pages/MyPage/Mypage";
 import ProfileSetup from "@pages/ProfileSetup/ProfileSetup";
 import GuestPage from "@pages/Timer/components/GuestPage/GuestPage";
 import Timer from "@pages/Timer/Timer";
 import WorkReport from "@pages/WorkReport/WorkReport";
-import WorkTimer from "@pages/WorkTimer/WorkTimer";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // 예시
@@ -24,10 +25,11 @@ const Router = () => {
         <Route path="/profile-setup" element={<ProfileSetup />} />,
         <Route path="/oauth/callback/kakao" element={<KakaoLogin />} />,
         <Route path="/unlogin" element={<GuestPage />} />,
-        <Route path="/timer" element={<Timer />} />,
 
+        <Route path="/timer" element={<Timer />} />,
         <Route path="/report" element={<WorkReport />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/character" element={<ModifyCharacter />} />
       </Routes>
     </BrowserRouter>
   );
