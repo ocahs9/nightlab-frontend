@@ -2,6 +2,7 @@ import HomePage from "@pages/Home/Home";
 import KakaoLogin from "@pages/KakaoLogin/KakaoLogin";
 import Login from "@pages/Login/Login";
 import LoginSchool from "@pages/LoginSchool/LoginSchool";
+import ModifyCharacter from "@pages/MyPage/ModifyCharacter/ModifyCharacter";
 import MyPage from "@pages/MyPage/Mypage";
 import ProfileSetup from "@pages/ProfileSetup/ProfileSetup";
 import GuestPage from "@pages/Timer/components/GuestPage/GuestPage";
@@ -26,9 +27,9 @@ const Router = () => {
         <Route path="/unlogin-timer" element={<GuestPage />} />,
         <Route path="/login-timer" element={<MemberPage/>}/>,
         <Route path="/timer" element={<Timer />} />,
-
         <Route path="/report" element={<WorkReport />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/character" element={<ModifyCharacter />} />
       </Routes>
     </BrowserRouter>
   );

@@ -115,17 +115,17 @@ const Header = ({ toggleMenu }) => {
         >
           <li>실시간 유저 수 보기</li>
           <li onClick={handleTimerClick}>작업 타이머</li>
-          <li onClick={handleReportClick} disabled={!isAuthenticated}>
+          <button onClick={handleReportClick} disabled={!isAuthenticated}>
             작업 패턴 분석 리포트
-          </li>
+          </button>
 
-          <li
+          <button
             className="last-menu"
             onClick={handleMyPageClick}
             disabled={!isAuthenticated}
           >
             마이페이지
-          </li>
+          </button>
         </H.MenuItems>
       )}
     </>
