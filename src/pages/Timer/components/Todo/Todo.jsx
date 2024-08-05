@@ -1,4 +1,4 @@
-import { get } from "@apis/index";
+import { del, get, patch, post } from "@apis/index";
 import { IcPlusRed, IcXRed } from "@assets/svgs/index";
 import { useEffect, useState } from "react";
 import * as S from "./Todo.styled";
@@ -13,6 +13,11 @@ const Todo = () => {
     4: {text: '0721 목표작업', completed: false, isEditing: false },
     5: {text: '0721 목표작업', completed: false, isEditing: false },
   })
+
+  //마운트 시 조회한 값으로 렌더링
+  useEffect(()=>{
+    todoGetApi();
+  },[])
 
   const todoGetApi = async() => {
     try{
@@ -29,6 +34,75 @@ const Todo = () => {
       console.error(error);
     }
   }
+
+  const todoCreateApi = async() => {
+    const formattedTodos = Object.values(todos).map((todo)=>({
+      text: todo.text
+    }));
+    try{
+      const response = await post("/api/todo", {
+        todo: formattedTodos
+      });
+      console.log(response);
+    }catch(error){
+      console.log("정상적으로 등록되지 않았습니다.")
+      console.error(error);
+    }
+  }
+
+  const todoEditApi = async(id)=> {
+    const formattedTodos = {};
+    formattedTodos["text"] = todos[id].text;
+    formattedTodos["completed"] = todos[id].completed;
+    try{
+      const response = await patch(`/api/todo/${id}`, formattedTodos);
+      console.log(response);
+      
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  const todoDeleteApi = async(id)=> {
+    try{
+      const response = await del(`/api/todo/${id}`);
+      console.log(response);
+      
+    }catch(error){
+      console.error(error);
+    }
+  }
+
+  const todoCompletedPatchApi = async(id) => {
+    try{
+      const response = await patch(`/api/todo/checkbox/${id}`);
+      console.log(response);
+      
+    }catch(error){
+      console.error(error);
+    }
+  }
+  
+  /*
+  const handleCreateTodo = () => {
+    todoCreateApi();
+  }*/
+
+    /*
+  const handleTodoEdit = (id) => () =>{
+    todoEditApi(id);
+  }*/
+
+  /*
+  const handleTodoCompletedEdit = (id) => () =>{
+    todoCompletedPatchApi(id);
+  }*/
+
+    /*
+  const handleTodoDelete = (id) => () => {
+    todoDeleteApi(id);
+  }*/
+
 
   
 
@@ -48,6 +122,7 @@ const Todo = () => {
         completed: !prevTodos[id].completed,
       },
     }));
+    todoCompletedPatchApi(id); //api 요청도 보냄
   }
 
   const handleAddTodo = () => {
@@ -67,6 +142,7 @@ const Todo = () => {
       ...prevTodos,
       [newId]: newTodo,
     }))
+    todoCreateApi(); //api 요청 보냄
   }
 
   const handleDeleteTodo = (id) => {
@@ -82,7 +158,9 @@ const Todo = () => {
     }
     ,{})//{}는 초기 acc를 의미함
 
+    todoDeleteApi(id); //삭제 api 요청도 보냄 
     setTodos(reorderedTodos);
+    
   }
 
   const handleToggleEdit = (id) =>{
@@ -93,6 +171,11 @@ const Todo = () => {
         isEditing: !prevTodos[id].isEditing,
       }
     }));
+
+    //만약 수정완료시에 눌렀을경우 -> 수정 api 요청도 같이 보냄
+    if(todos[id].isEditing){
+      todoEditApi(id);
+    }
   }
 
   //예술! id를 입력받은 듯한 일반함수가 결국은 이벤트 핸들러에 해당하는 함수를 반환하므로 문제가 없어진다.
