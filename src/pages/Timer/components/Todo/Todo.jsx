@@ -43,6 +43,7 @@ const Todo = () => {
       const response = await post("/api/todo", {
         todo: formattedTodos
       });
+      //아마 여기서 넘겨주는 id를 활용해서 객체를 세팅해야함
       console.log(response);
     }catch(error){
       console.log("정상적으로 등록되지 않았습니다.")
