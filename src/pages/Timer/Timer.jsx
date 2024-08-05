@@ -45,7 +45,7 @@ const Timer = () => {
   useEffect(()=>{
     const getUserMemoData = async() => {
       try{
-        const response = await axios.get("http://nightlab.kro.kr:8000/api/memo/all");
+        const response = await axios.get("https://nightlab.site/api/memo/all");
         //console.log(response);
         console.log(response.data.data.memo);
         setUserMemoDatas(response.data.data.memo);
@@ -205,7 +205,7 @@ const Timer = () => {
   return (
     <S.TimerPageWrapper>
       <S.TimerWrapper>
-        <Todo/>
+        {isLogin && <Todo/>}
         <S.TimerTitle>작업 타이머</S.TimerTitle>
         <S.MyStatusWrapper>
           <S.MyStatusTimer>{`${formatWorkTime(workTime)}째 작업 중`}</S.MyStatusTimer>
