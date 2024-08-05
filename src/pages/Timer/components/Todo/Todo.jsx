@@ -164,14 +164,15 @@ const Todo = () => {
     //index, 즉 id에 해당하는 부분을 수정하는 로직(재정렬) - 중간에 사라질 수도 있으므로
     //reduce함수는 2개의 인자(리듀서 함수, 초기값 - 누적기가 시작하는 값)
     //리듀서 함수는 
+    /*
     const reorderedTodos = Object.keys(updatedTodos).reduce((acc, currentKey, idx)=>{
       acc[idx+1]= updatedTodos[currentKey];
       return acc; //현재 acc 갱신
     }
-    ,{})//{}는 초기 acc를 의미함
+    ,{})//{}는 초기 acc를 의미함*/
 
     todoDeleteApi(id); //삭제 api 요청도 보냄 
-    setTodos(reorderedTodos);
+    setTodos(updatedTodos);
     
   }
 
