@@ -1,6 +1,6 @@
 import * as QM from "./QuitModal.styled";
 
-const QuitModal = ({ show, onHide, onExit }) => {
+const QuitModal = ({ onHide, onExit }) => {
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onHide();
@@ -10,7 +10,7 @@ const QuitModal = ({ show, onHide, onExit }) => {
   return (
     <>
       <QM.Wrapper onClick={handleBackdropClick}>
-        <QM.QuitModal show={show} backdrop={true} centered>
+        <QM.QuitModal show="true" backdrop="true" centered="true">
           <QM.QuitModalBody>
             <h4>정말 탈퇴하시겠어요?</h4>
             <p>탈퇴하면 정보를 복구할 수 없어요</p>

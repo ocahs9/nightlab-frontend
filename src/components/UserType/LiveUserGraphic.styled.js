@@ -1,11 +1,6 @@
 import { fontStyles } from "@styles/mixins";
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const GraphicContainer = styled.div`
   width: 358px;
   height: 384px;

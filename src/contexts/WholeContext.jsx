@@ -10,25 +10,19 @@ export const ContextProvider = ({ children }) => {
     showCloseButton: false,
   });
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const LoginButton = header.showLoginButton;
 
-  const login = () => {
-    // 로직 구현 안된 단순 동작
-    setIsAuthenticated(true);
-
-    // 토큰(Access Token)을 이용해 로직 구현 필요
-  };
-
-  const logout = () => {
-    // 로직 구현 안된 단순 동작
-    setIsAuthenticated(false);
-
-    // 토큰을 이용해 로직 구현 필요
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Context.Provider
-      value={{ isAuthenticated, login, logout, header, setHeader }}
+      value={{
+        header,
+        setHeader,
+        isMenuOpen,
+        setIsMenuOpen,
+        LoginButton
+      }}
     >
       {children}
     </Context.Provider>

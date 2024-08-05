@@ -8,7 +8,7 @@ import Introduction from "@components/Introduction/Introduction";
 import ScrollTop from "@components/ScrollTop/ScrollTop";
 import axios from "axios";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useData } from "../../contexts/WholeContext";
 
 const HomePage = () => {
@@ -20,15 +20,6 @@ const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [liveUser, setLiveUser] = useState(null);
   const [dailyUser, setDailyUser] = useState(null);
-
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-    setHeader({
-      showLogo: true,
-      showLoginButton: !LoginButton,
-      showHamburgerButton: true,
-    });
-  };
 
   useEffect(() => {
     setHeader({
@@ -55,20 +46,25 @@ const HomePage = () => {
     fetchData();
   }, [setHeader]);
 
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: !LoginButton,
+      showHamburgerButton: true,
+    });
+  };
+
   return (
     <>
       <Header toggleMenu={toggleMenu} />
-
       {!isMenuOpen && (
         <>
           <Introduction connectedUser={dailyUser} />
           <MainGraphic />
-
           <LiveUsers liveUser={liveUser} />
-          <LiveUserGraphic liveUser={liveUser} />
-
           <EnterTimer />
-
           <Footer />
           <ScrollTop />
         </>

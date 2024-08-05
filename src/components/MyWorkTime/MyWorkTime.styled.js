@@ -5,7 +5,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin: 36px 0 72px;
+  margin: 36px 0;
+  padding: 0 16px;
+  padding-bottom: 20px;
 
   .title {
     ${({ theme }) => fontStyles(theme.fonts.Header_3)}
@@ -16,13 +18,13 @@ export const Container = styled.div`
 export const User = styled.div`
   display: flex;
 
-  margin-top: 36px;
+  margin-top: 32px;
 
   .profile {
-    width: 150px;
+    width: 148px;
     height: 200px;
 
-    margin-right: 32px;
+    margin-right: 24px;
   }
 `;
 

@@ -1,7 +1,29 @@
 import * as CP from "./Comparison.styled";
-import reportImage from "../../assets/svgs/ReportImage1.svg";
 
-const Comparison = () => {
+import reportImage from "../../assets/svgs/ReportImage1.svg";
+import { useState, useEffect } from "react";
+
+const Comparison = ({ reportData }) => {
+  const {
+    user_name,
+    college,
+    college_average,
+    user_average,
+    college_comparison,
+  } = reportData;
+
+  const collegeComparison = Math.abs(college_comparison);
+
+  const [moreOrLess, setMoreOrLess] = useState();
+
+  useEffect(() => {
+    if (college_comparison >= 0 && moreOrLess !== "많이") {
+      setMoreOrLess("많이");
+    } else if (college_comparison < 0 && moreOrLess !== "적게") {
+      setMoreOrLess("적게");
+    }
+  }, [college_comparison, moreOrLess]);
+
   return (
     <>
       <CP.Container>
@@ -10,19 +32,22 @@ const Comparison = () => {
           <img src={reportImage} alt="dummyUser" className="profile" />
           <CP.UserData>
             <p>
-              공과대학 평균 야작 시간
+              {college} 평균 야작 시간
               <br />
-              <span>4시간 27분</span>
+              <span>{college_average}</span>
             </p>
             <p>
-              철흥님의 평균 야작 시간
+              {user_name}님의 평균 야작 시간
               <br />
-              <span>6시간 31분</span>
+              <span>{user_average}</span>
             </p>
             <p>
               같은 전공 대비
               <br />
-              <span>2시간 더 많이</span> 작업했어요.
+              <span>
+                {collegeComparison}시간 더 {moreOrLess}
+              </span>{" "}
+              작업했어요
             </p>
           </CP.UserData>
         </CP.User>

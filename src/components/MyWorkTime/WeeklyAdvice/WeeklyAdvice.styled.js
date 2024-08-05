@@ -7,10 +7,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: 96px;
-
   .title {
-    ${({ theme }) => fontStyles(theme.fonts.Header_4_1)}
+    ${({ theme }) => fontStyles(theme.fonts.Header_4_2)}
     color: ${({ theme }) => theme.colors.White};
 
     text-align: center;
@@ -20,7 +18,9 @@ export const Container = styled.div`
     width: 220px;
     height: 220px;
 
-    margin: 28px auto;
+    margin: 0 auto;
+    margin-top: 16px;
+    margin-bottom: 32px;
 
     border-radius: 2px;
 
@@ -29,6 +29,11 @@ export const Container = styled.div`
   }
 
   .caution {
+    ${({ theme }) => fontStyles(theme.fonts.Header_4_1)}
     color: ${({ theme }) => theme.colors.Main_Red};
+
+    text-align: center;
+
+    margin-bottom: 57px;
   }
 `;
