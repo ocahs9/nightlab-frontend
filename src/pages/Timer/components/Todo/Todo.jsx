@@ -23,7 +23,11 @@ const Todo = () => {
 
   //마운트 시 조회한 값으로 렌더링
   useEffect(()=>{
-    todoGetApi();
+    if(newTodoIds.length === 0){
+      setTodos({});
+    }else{
+      todoGetApi();
+    }
   },[])
 
   const todoGetApi = async() => {
@@ -46,8 +50,9 @@ const Todo = () => {
   }
 
   const todoCreateApi = async() => {
-    const formattedTodos = Object.values(todos).map((todo)=>({
-      text: todo.text
+    const filteredTodos = Object.values(todos).filter((todo) => todo.text.trim() !== "");
+    const formattedTodos = filteredTodos.map((todo) => ({
+      text: todo.text,
     }));
     try{
       const response = await post("/api/todo", {
