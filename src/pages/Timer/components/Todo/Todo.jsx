@@ -49,17 +49,46 @@ const Todo = () => {
     }
   }
 
+  //여기 로직이 잘못되었었음. 여기선 "하나 하나" 추가하는 로직으로 가야만 함 - 논리 구조 잘 생각해서, 그대로 복사하지 말기.
   const todoCreateApi = async() => {
-    const filteredTodos = Object.values(todos).filter((todo) => todo.text.trim() !== "");
-    const formattedTodos = filteredTodos.map((todo) => ({
-      text: todo.text,
-    }));
+
+    const todoCount = Object.keys(todos).length; //객체의 키들을 뽑아 배열을 만든 뒤 길이 체크
+    if(todoCount >=5){
+      console.log("최대 5개의 todo만 추가할 수 있습니다.");
+      return;
+    }
+
     try{
       const response = await post("/api/todo", {
-        todo: formattedTodos
+
+        todo: [{
+          text: ""
+        }]
       });
       //아마 여기서 넘겨주는 id를 활용해서 객체를 세팅해야함
+      console.log("하하");
       console.log(response);
+
+      const findMaxIdFromResponse = (response) => {
+        // 응답의 데이터 구조를 통해 todos 배열을 추출합니다.
+        const todos = response.data.data.todo;
+        
+        // todos 배열에서 모든 ID를 추출하여 배열로 만듭니다.
+        const ids = todos.map(todo => todo.id);
+        
+        // 배열에서 가장 큰 ID를 찾습니다.
+        const maxId = Math.max(...ids);
+        
+        return maxId;
+      };
+
+      const newId = findMaxIdFromResponse(response);
+      const newTodo = {text: "", completed: false, isEditing: false};
+    
+      setTodos((prevTodos)=>({
+        ...prevTodos,
+        [newId]: newTodo,
+      }))
     }catch(error){
       console.log("정상적으로 등록되지 않았습니다.")
       console.error(error);
@@ -142,23 +171,7 @@ const Todo = () => {
   }
 
   const handleAddTodo = () => {
-    const newTodoText = "";
-    const todoCount = Object.keys(todos).length; //객체의 키들을 뽑아 배열을 만든 뒤 길이 체크
-    if(todoCount >=5){
-      console.log("최대 5개의 todo만 추가할 수 있습니다.");
-      return;
-    }
     
-    //todoCount === 0 (falsy)면 1, 아니면 계산해서 값 할당(객체의 키들을 뽑은 뒤 Number 내장함수로 숫자로 변환한 배열 생성, 그리고 이를 스프레드로 뿌려줌)
-    //최대값을 계산하는 Math를 사용하기 위함이므로, 숫자형으로 변환한 것!(원래 객체에서의 key값은 전부 문자열 취급)
-    const newId = todoCount ? Math.max(...Object.keys(todos).map(Number)) + 1: 1;
-    //이제 이 new Id, newTodo 부분을 api 요청 받아온 걸로 세팅하는 로직으로 변경해야할 수 있음.
-    const newTodo = {text: newTodoText, completed: false, isEditing: false};
-    
-    setTodos((prevTodos)=>({
-      ...prevTodos,
-      [newId]: newTodo,
-    }))
     todoCreateApi(); //api 요청 보냄
   }
 
