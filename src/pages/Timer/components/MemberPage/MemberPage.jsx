@@ -33,16 +33,21 @@ const MemberPage = () => {
   //그냥 귀찮다고 api를 onClick에 반환하는 형식으로 하면 안됨.
   //내부적으로 실행되어야 함..
   const todoCreateApi = async() => {
-    console.log("완료버튼");
-    const formattedTodos = Object.values(todos).map((todo)=>({
-      text: todo.text
+    //빈 문자열이 아닌 것만 요청에 포함시키도록 로직 변경
+    const filteredTodos = Object.values(todos).filter((todo) => todo.text.trim() !== "");
+    const formattedTodos = filteredTodos.map((todo) => ({
+      text: todo.text,
     }));
+    /*const formattedTodos = Object.values(todos).map((todo)=>({
+      text: todo.text
+    }));*/
     try{
       const response = await post("/api/todo", {
         todo: formattedTodos
       });
+      
       console.log(response);
-      navigate("/timer"); //성공 시 넘어감
+      //navigate("/timer"); //성공 시 넘어감
 
     }catch(error){
       console.log("정상적으로 등록되지 않았습니다.")
