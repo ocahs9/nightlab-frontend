@@ -67,12 +67,12 @@ instance.interceptors.response.use((response)=>response,
     const originalRequest = error.config;
     
     //추후 RefershToken 도 만류될 수 있는데, 일단 그 부분 로직 구성은 생략(2주이기 때문)
-    if (error.response && error.response.data.code === 401 && !originalRequest._retry) {
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         const refreshToken = getRefreshToken();
-        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/kakao/login/token_reissue`, { refresh_token: refreshToken });
-        
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/kakao/token_reissue`, { refresh_token: refreshToken });
+        console.log("재발급 실행:",response);
         const newAccessToken = response.data.access_token;
         setAccessToken(newAccessToken);
 
