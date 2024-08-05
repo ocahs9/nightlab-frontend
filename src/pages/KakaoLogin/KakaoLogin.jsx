@@ -28,7 +28,7 @@ const KakaoLogin = () => {
         try {
           const response = await axios.post(
             //Backend Full API URL - Access Token Will be returned.
-            'http://nightlab.kro.kr:8000/auth/kakao/login',
+            'https://nightlab.site/auth/kakao/login',
             { access_code: code },
             //{ params: { code: code } }
           );
