@@ -137,6 +137,7 @@ const Todo = () => {
     //todoCount === 0 (falsy)면 1, 아니면 계산해서 값 할당(객체의 키들을 뽑은 뒤 Number 내장함수로 숫자로 변환한 배열 생성, 그리고 이를 스프레드로 뿌려줌)
     //최대값을 계산하는 Math를 사용하기 위함이므로, 숫자형으로 변환한 것!(원래 객체에서의 key값은 전부 문자열 취급)
     const newId = todoCount ? Math.max(...Object.keys(todos).map(Number)) + 1: 1;
+    //이제 이 new Id, newTodo 부분을 api 요청 받아온 걸로 세팅하는 로직으로 변경해야할 수 있음.
     const newTodo = {text: newTodoText, completed: false, isEditing: false};
     
     setTodos((prevTodos)=>({
