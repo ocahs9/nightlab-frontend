@@ -14,11 +14,20 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.colors.White};
   }
 
+  .timer-graphic {
+    width: 360px;
+    height: 317px;
+
+    margin: 0 auto;
+    margin-top: 16px;
+    margin-bottom: 24px;
+  }
+
   .start-btn {
     width: 358px;
     height: 56px;
     align-self: center;
-    
+
     padding: 16px 96px;
 
     ${({ theme }) => fontStyles(theme.fonts.Subhead_3_2)}

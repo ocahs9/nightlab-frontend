@@ -1,7 +1,7 @@
 import Clock from "@components/Clock/Clock";
 import * as LU from "./LiveUsers.styled";
 
-const LiveUsers = () => {
+const LiveUsers = ({ liveUser }) => {
   return (
     <>
       <LU.Container>
@@ -10,7 +10,7 @@ const LiveUsers = () => {
         </span>
         <span>기준,</span>
         <br />
-        127명이 작업 등대에 있어요.
+        {liveUser}명이 작업 등대에 있어요.
       </LU.Container>
     </>
   );

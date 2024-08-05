@@ -4,7 +4,7 @@ import { useData } from "../../contexts/WholeContext";
 
 import * as H from "./Header.styled";
 
-import mainLogo from "../../assets/mainLogo.svg";
+import mainLogo from "../../assets/svgs/mainLogo.svg";
 import closeIcon from "../../assets/svgs/closeIcon.svg";
 
 const Header = ({ toggleMenu }) => {

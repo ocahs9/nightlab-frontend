@@ -16,6 +16,16 @@ export const Container = styled.div`
   }
 `;
 
+export const Graphic = styled.div`
+  width: 264px;
+  height: 434px;
+
+  .main-graphic {
+    width: 264px;
+    height: 434px;
+  }
+`;
+
 export const Slogan = styled.p`
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => fontStyles(theme.fonts.Subhead_2_2)}
