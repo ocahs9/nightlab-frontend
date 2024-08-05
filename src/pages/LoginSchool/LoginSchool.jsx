@@ -1,20 +1,18 @@
+import { get, post } from "@apis/index";
+import Header from "@components/header/Header";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./LoginSchool.styled";
 import { useData } from "../../contexts/WholeContext";
-import Header from "@components/header/Header";
+import * as S from "./LoginSchool.styled";
 
 const LoginSchool = () => {
   //가장 먼저, 로그인은 되어 있는데, 학교는 입력 안했는지 살펴볼 것
   //만약 학교 입력은 되어 있으면 바로 main으로 건너 뛰는 로직 필요
   //atom 사용해야할 것이라고 추측.
   //일단 로컬스토리지로 구현
-
+  const [onBoarding, setOnBoarding] = useState(true); //기본은 넘어가도록 설정
   const { setHeader } = useData();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
+  useEffect(()=>{
     setHeader({
       showLogo: true,
       showLoginButton: false,
@@ -22,11 +20,37 @@ const LoginSchool = () => {
       showCloseButton: true,
     });
 
-    const isSetComplete = localStorage.getItem("isSetComplete");
-    if (isSetComplete) {
+    onBoardingApi(); //넘어갈지 말지
+  },[])
+
+  const navigate = useNavigate();
+
+  const onBoardingApi = async() => {
+    try{
+      const response = await get("/api/onboard");
+      console.log("온보딩으로 넘어갈지 여부: ",response.data.onboarding )
+      setOnBoarding(response.data.onboarding);
+    }catch(error){
+      console.error(error);
+      return null; //어차피 프로미스 반환할거임
+    }
+  }
+
+  useEffect(() => {
+
+    /*
+      여기서 온보딩 API 쏘고, 해당 결과를 이용해서 넘어가는 로직 구성하기
+     */
+    //const isSetNotComplete = onBoardingApi();//localStorage.getItem("isSetComplete");
+    //console.log("넘어가기전 온보딩:", isSetNotComplete);
+    if (!onBoarding) {
       navigate("/");
     }
-  }, []);
+  }, [onBoarding]);
+
+  
+
+  
 
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
@@ -56,11 +80,11 @@ const LoginSchool = () => {
   //이메일 확인 요청을 쏘는 로직
   const handleEmailButton = async (emailAddress) => {
     //이 두줄은 나중에 바로 지울 예정
-    console.log("email 확인 버튼 클릭");
-    setIsMailSended(true);
+    //console.log("email 확인 버튼 클릭");
+    //setIsMailSended(true);
 
     //아래의 코드는 api 연결할 때 주석 해제하여 그대로 사용할 예정
-    /*
+    
     try{
       const response = await post("auth/verify", 
         {
@@ -75,15 +99,15 @@ const LoginSchool = () => {
       alert(error.response.data.detail);
       console.error("Error:",error);
     }
-    */
+    
   };
 
   const handleEmailCodeButton = async (emailCode) => {
     //이 두줄은 나중에 바로 지울 예정
-    console.log("인증번호 확인 요청 버튼 클릭");
-    setIsCertificated(true);
+    //console.log("인증번호 확인 요청 버튼 클릭");
+    //setIsCertificated(true);
 
-    /*
+    
     //아래의 코드는 api 연결할 때 주석 해제하여 그대로 사용할 예정
     try{
       const response = await post("auth/verify/check", 
@@ -98,7 +122,7 @@ const LoginSchool = () => {
       alert(error.response.data.detail);
       console.error("Error:",error);
     }
-    */
+    
   };
 
   const handleNextButton = () => {
