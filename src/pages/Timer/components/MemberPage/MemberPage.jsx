@@ -12,6 +12,8 @@ const MemberPage = () => {
     5: {text: ""},
   })
   const [isAnyInput, setIsAnyInput] = useState(false);
+  const [newTodoIds, setNewTodoIds] = useState([]); // 생성된 todo의 ID를 저장할 상태
+
   useEffect(()=>{
     //some 메서드는 하나라도 주어진 조건을 만족하면 true를 반환함
     const hasAnyInput = Object.values(todos).some((todo)=> todo.text.trim() !== "");
@@ -47,7 +49,9 @@ const MemberPage = () => {
       });
       
       console.log(response);
-      //navigate("/timer"); //성공 시 넘어감
+      const createdIds = response.data.data.todo.map((item)=> item.id); //방금 생성한 id들만 뽑아냄
+      setNewTodoIds(createdIds); // ID들 저장
+      navigate("/timer", {state:{newTodoIds: createdIds}}); //ID들 전달하면서 navigate
 
     }catch(error){
       console.log("정상적으로 등록되지 않았습니다.")

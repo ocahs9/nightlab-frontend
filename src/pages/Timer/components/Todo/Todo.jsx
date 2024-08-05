@@ -1,11 +1,14 @@
 import { del, get, patch, post } from "@apis/index";
 import { IcPlusRed, IcXRed } from "@assets/svgs/index";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import * as S from "./Todo.styled";
 
 const Todo = () => {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
-  //추후 api 요청으로 받아온걸로 세팅할 예정
+  const location = useLocation();
+  const newTodoIds = location.state?.newTodoIds || []; //전달받은 새로 생성된 todo의 id를 배열로 가져옴
+  //추후 api 요청으로 받아온걸로 세팅할 예정 - 아래는 그냥 더미 예시(어차피 렌더링 안됨)
   const [todos, setTodos] = useState({
     1: {text: '0721 목표작업', completed: false, isEditing: false },
     2: {text: '0721 목표작업', completed: false, isEditing: false },
@@ -13,6 +16,10 @@ const Todo = () => {
     4: {text: '0721 목표작업', completed: false, isEditing: false },
     5: {text: '0721 목표작업', completed: false, isEditing: false },
   })
+
+  useEffect(()=>{
+    console.log("하이하이",todos);
+  },[todos])
 
   //마운트 시 조회한 값으로 렌더링
   useEffect(()=>{
@@ -22,9 +29,12 @@ const Todo = () => {
   const todoGetApi = async() => {
     try{
       const response = await get("/api/todo");
-      console.log(response);
-      const apiTodo = response.data.data.todo;
-      const formattedApiTodo = apiTodo.reduce((acc,{id, text, completed})=> {
+      
+      //api 명세랑 또 달라 ㅜㅜ 결국 내가 수정
+      const apiTodo = response.data;
+      const filteredApiTodo = apiTodo.filter((todo)=>newTodoIds.includes(todo.id));
+      
+      const formattedApiTodo = filteredApiTodo.reduce((acc,{id, text, completed})=> {
         acc[id] = {text, completed, isEditing: false};
         return acc;
       },{});
