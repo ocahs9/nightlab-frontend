@@ -3,10 +3,10 @@ import * as LU from "./LiveUsers.styled";
 import Clock from "@components/Clock/Clock";
 import LiveUserGraphic from "@components/UserType/LiveUserGraphic";
 
-const LiveUsers = ({ liveUser, ref }) => {
+const LiveUsers = ({ liveUser }) => {
   return (
     <>
-      <LU.Container ref={ref} id="live-users-section">
+      <LU.Container>
         <LU.Text>
           <span className="clock-line">
             <span className="clock">

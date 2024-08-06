@@ -8,7 +8,7 @@ import * as H from "./Header.styled";
 import mainLogo from "../../assets/svgs/mainLogo.svg";
 import closeIcon from "../../assets/svgs/closeIcon.svg";
 
-const Header = ({ toggleMenu, scrollToLiveSection }) => {
+const Header = ({ toggleMenu, scrollToSection, livescroll }) => {
   const { header } = useData();
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => checkLogin());
@@ -64,6 +64,24 @@ const Header = ({ toggleMenu, scrollToLiveSection }) => {
 
     // 홈 화면으로 리다이렉트
     window.location.href = "/";
+  };
+
+  // 실시간 유저 수 보기 클릭 시 호출될 함수
+  const scrollToLiveSection = () => {
+    setMenuOpen(false);
+    scrollToSection();
+    livescroll();
+    // setMenuOpen(false);
+
+    // const element = document.getElementById("live-users-section");
+
+    // if (element) {
+    //   const topOffset = element.offsetTop;
+    //   window.scrollTo({
+    //     top: topOffset,
+    //     behavior: "smooth",
+    //   });
+    // }
   };
 
   return (
