@@ -12,7 +12,7 @@ import Header from "@components/header/Header";
 import gentle from "@assets/svgs/gentle_profile.svg";
 import serious from "@assets/svgs/serious_profile.svg";
 import sharp from "@assets/svgs/sharp_profile.svg";
-
+import { patch } from "@apis/index";
 
 const ModifyCharacter = () => {
   const { setHeader } = useData();
@@ -35,11 +35,21 @@ const ModifyCharacter = () => {
 
     if (selectedCharacter !== character) {
       setCharacter(selectedCharacter);
-      localStorage.setItem("selectedCharacter", selectedCharacter);
+      // localStorage.setItem("selectedCharacter", selectedCharacter);
     }
   };
 
-  const handleProfileChange = () => {
+  const handleProfileChange = async () => {
+    try {
+      const response = await patch("/api/mypage", {
+        profile: character,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+
     navigate("/mypage");
   };
 

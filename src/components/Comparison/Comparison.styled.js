@@ -6,7 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
 
   margin-top: 36px;
-  padding-bottom: 48px;
+  padding: 0 16px;
+  padding-bottom: 56px;
 
   border-bottom: 1px dashed ${({ theme }) => theme.colors.Gray_50};
 
@@ -19,7 +20,7 @@ export const Container = styled.div`
 export const User = styled.div`
   display: flex;
 
-  margin-top: 36px;
+  margin-top: 32px;
 
   .profile {
     width: 150px;

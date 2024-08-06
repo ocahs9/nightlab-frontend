@@ -1,5 +1,5 @@
 import * as ST from "./ScrollTop.styled";
-import topArrow from "../../assets/topArrow.svg";
+import topArrow from "@assets/svgs/topArrow.svg";
 
 const ScrollTop = () => {
   const ScrollToTop = () => {

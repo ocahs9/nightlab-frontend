@@ -2,16 +2,28 @@ import { fontStyles } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
+  width: 100%;
 
-  margin: 114px 16px 24px 16px;
+  margin-top: 114px;
+  padding: 0 16px;
 
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => fontStyles(theme.fonts.Header_3)}
+`;
+
+export const Text = styled.div`
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  .clock-line {
+    display: inline-block;
+    width: 200px;
+  }
 
   .clock {
     display: inline-block;
-    width: 120px;
+    min-width: 118px;
+    max-width: 122px;
   }
 `;

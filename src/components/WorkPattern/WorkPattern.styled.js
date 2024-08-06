@@ -5,8 +5,9 @@ export const Pattern = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-top: 24px; // NavBar fixed 일 때는 93px
-  padding-bottom: 48px;
+  margin-top: 24px;
+  padding: 0 16px;
+  padding-bottom: 36px;
 
   border-bottom: 1px dashed ${({ theme }) => theme.colors.Gray_50};
 

@@ -5,45 +5,77 @@ import { useData } from "../../contexts/WholeContext";
 
 import * as H from "./Header.styled";
 
-import mainLogo from "../../assets/mainLogo.svg";
+import mainLogo from "../../assets/svgs/mainLogo.svg";
 import closeIcon from "../../assets/svgs/closeIcon.svg";
 
 const Header = ({ toggleMenu }) => {
-  const { isAuthenticated, login, logout, header } = useData();
+  const { header } = useData();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(() => checkLogin());
 
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
     toggleMenu();
   };
 
   // console.log("isAuthenticated", isAuthenticated);
 
   const handleHomeClick = () => {
+    // setMenuOpen((prev) => !prev);
     navigate("/");
   };
 
   const handleLoginClick = () => {
+    // setMenuOpen((prev) => !prev);
     navigate("/login");
   };
 
   const handleReportClick = () => {
+    // setMenuOpen((prev) => !prev);
     navigate("/report");
   };
 
   const handleTimerClick = () => {
-    if(checkLogin()){
+    if (checkLogin()) {
       navigate("/login-timer");
-    }else{
+    } else {
       navigate("/unlogin-timer");
     }
   };
 
   const handleMyPageClick = () => {
+    // setMenuOpen((prev) => !prev);
     navigate("/mypage");
+  };
+
+  const handleLogout = () => {
+    // localStorage에서 토큰 제거
+    localStorage.removeItem("user");
+    localStorage.removeItem("isSetComplete");
+    localStorage.removeItem("navigateUrl");
+
+    const isLoggedIn = checkLogin();
+    setIsLoggedIn(isLoggedIn);
+
+    // 홈 화면으로 리다이렉트
+    window.location.href = "/";
+  };
+
+  // 실시간 유저 수 보기 클릭 시 호출될 함수
+  const scrollToLiveSection = () => {
+    const element = document.getElementById("live-users-section");
+
+    if (element) {
+      const topOffset = element.offsetTop;
+      window.scrollTo({
+        top: topOffset,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -57,10 +89,10 @@ const Header = ({ toggleMenu }) => {
             onClick={handleHomeClick}
           />
         )}
-        {isAuthenticated ? (
+        {isLoggedIn ? (
           <H.Options>
             {header.showLoginButton && (
-              <button className="login-btn" onClick={handleHomeClick}>
+              <button className="login-btn" onClick={handleLogout}>
                 로그아웃
               </button>
             )}
@@ -118,16 +150,16 @@ const Header = ({ toggleMenu }) => {
             transform: menuOpen ? "translateX(0%)" : "translateX(150%)",
           }}
         >
-          <li>실시간 유저 수 보기</li>
-          <li onClick={handleTimerClick}>작업 타이머</li>
-          <button onClick={handleReportClick} disabled={!isAuthenticated}>
+          <button onClick={scrollToLiveSection}>실시간 유저 수 보기</button>
+          <button onClick={handleTimerClick}>작업 타이머</button>
+          <button onClick={handleReportClick} disabled={!isLoggedIn}>
             작업 패턴 분석 리포트
           </button>
 
           <button
             className="last-menu"
             onClick={handleMyPageClick}
-            disabled={!isAuthenticated}
+            disabled={!isLoggedIn}
           >
             마이페이지
           </button>

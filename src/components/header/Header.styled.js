@@ -7,23 +7,18 @@ export const Container = styled.div`
 `;
 
 export const NavBar = styled.div`
+  width: 100%;
+  height: 44px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  width: 375px;
-
-  /* margin-top: 32px; */
-  padding: 8px 16px;
-
-  /* position: fixed;
-  top: 0; */
-
-  z-index: 5;
+  gap: 131px;
 
   .mainLogo {
-    width: 150px;
-    margin-top: 12px;
+    width: 120px;
+    margin: 12px 0 4.67px 18px;
   }
 `;
 
@@ -35,11 +30,11 @@ export const Options = styled.div`
   .login-btn {
     display: inline-block;
 
-    width: 100%;
+    width: 80px;
     height: 28px;
 
     padding: 2px 14px;
-    margin: 10px 4px 10px 0;
+    margin: 10px 0;
 
     color: ${({ theme }) => theme.colors.White};
     ${({ theme }) => fontStyles(theme.fonts.Subhead_4)}
@@ -53,7 +48,6 @@ export const Options = styled.div`
   }
 
   /* input 태그를 사용해 햄버거 버튼 모양을 X로 상호 변형 */
-
   #menu-toggle {
     width: 0;
     height: 0;
@@ -86,6 +80,8 @@ export const HamburgerButton = styled.label`
   position: relative;
 
   margin: 10px 16px;
+
+  cursor: pointer;
 
   span {
     width: 22px;
@@ -125,14 +121,17 @@ export const HamburgerButton = styled.label`
 `;
 
 export const MenuItems = styled.ul`
-  list-style: none;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 6px;
 
   ${({ theme }) => fontStyles(theme.fonts.Subhead_2_2)};
   color: ${({ theme }) => theme.colors.White};
-
-  width: 100%;
-
-  flex-direction: column;
+  
+  list-style: none;
 
   transform: translateX(150%);
   transition: 0.4s ease-out;

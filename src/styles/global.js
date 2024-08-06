@@ -52,7 +52,7 @@ const global = createGlobalStyle`
     }
 
     body {
-        width: 375px; 
+        width: 390px; 
         min-height: 100%;
         margin: 0 auto; 
         overflow-x: hidden;

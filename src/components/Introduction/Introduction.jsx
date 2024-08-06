@@ -1,11 +1,11 @@
 import * as I from "./Introduction.styled";
 
-const Introduction = () => {
+const Introduction = ({ connectedUser }) => {
   return (
     <>
       <I.Container>
         <h2 className="daily-users">
-          오늘은 375명이
+          오늘은 {connectedUser}명이
           <br />
           작업 등대를 다녀갔어요.
         </h2>
