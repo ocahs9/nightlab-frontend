@@ -1,8 +1,4 @@
-import icon_check_goal from "@assets/svgs/icon_check_goal.svg";
-import pen from "@assets/svgs/icon_pen.svg";
 import pen_red from "@assets/svgs/icon_pen_red.svg";
-import icon_uncheck_goal from "@assets/svgs/icon_uncheck_goal.svg";
-import icon_x from "@assets/svgs/icon_x.svg";
 import icon_x_red from "@assets/svgs/icon_x_red.svg";
 import { Ic36 } from "@assets/svgs/index";
 import todoBackground from "@assets/svgs/todoList_background.svg";
@@ -126,10 +122,12 @@ export const TodoListBoxContent = styled.div`
   align-items: center;
   gap: 7px;
 `
+
+//버튼수정디브
 export const TodoListBoxCheckButton = styled.div`
   width: 34px;
   height: 34px;
-  background-image: url(${({ $isCompleted }) => $isCompleted ? icon_check_goal : icon_uncheck_goal});
+  background-image: url(${({ $isCompleted, $icon_check_goal, $icon_uncheck_goal  }) => $isCompleted ? $icon_check_goal : $icon_uncheck_goal});
 `
 
 export const TodoListBoxTextInput = styled.input`
@@ -154,9 +152,9 @@ export const TodoListBoxEdit = styled.div`
   align-items: center;
   gap: 8px;
 `
-
+//버튼수정디브
 export const TodoListBoxEditBtn = styled.div`
-  background-image: url( ${({ $red }) => $red? pen_red: pen});
+  background-image: url( ${({ $red, $pen_red, $pen }) => $red? $pen_red: $pen});
     display: flex;
   width: 24px;
   height: 24px;
@@ -171,9 +169,9 @@ export const TodoListBoxEditBtn = styled.div`
     //background-image: url(${pen_red});
   //}
 `
-
+//버튼수정디브
 export const TodoListBoxDeleteBtn = styled.div`
-  background-image: url( ${({ $red }) => $red? icon_x_red: icon_x});
+  background-image: url( ${({ $red, $icon_x_red, $icon_x }) => $red? $icon_x_red: $icon_x});
 
   display: flex;
   width: 24px;
