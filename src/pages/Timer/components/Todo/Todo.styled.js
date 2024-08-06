@@ -166,9 +166,9 @@ export const TodoListBoxEditBtn = styled.button`
   background-repeat: no-repeat; /* 이미지 반복 없음 */
   background-position: center; /* 중앙에 위치 */
   //background-size: contain; /* 요소 내에 맞춤 */
-  &:hover{
-    background-image: url(${pen_red});
-  }
+  //&:hover{
+    //background-image: url(${pen_red});
+  //}
 `
 
 export const TodoListBoxDeleteBtn = styled.button`
@@ -181,7 +181,7 @@ export const TodoListBoxDeleteBtn = styled.button`
   justify-content: center;
   align-items: center;
 
-  &:hover{
-    background-image: url(${icon_x_red});
-  }
+  //&:hover{
+    //background-image: url(${icon_x_red});
+  //}
 `

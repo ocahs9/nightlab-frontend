@@ -12,6 +12,8 @@ const MemberPage = () => {
     5: {text: ""},
   })
   const [isAnyInput, setIsAnyInput] = useState(false);
+  const [newTodoIds, setNewTodoIds] = useState([]); // 생성된 todo의 ID를 저장할 상태
+
   useEffect(()=>{
     //some 메서드는 하나라도 주어진 조건을 만족하면 true를 반환함
     const hasAnyInput = Object.values(todos).some((todo)=> todo.text.trim() !== "");
@@ -33,16 +35,23 @@ const MemberPage = () => {
   //그냥 귀찮다고 api를 onClick에 반환하는 형식으로 하면 안됨.
   //내부적으로 실행되어야 함..
   const todoCreateApi = async() => {
-    console.log("완료버튼");
-    const formattedTodos = Object.values(todos).map((todo)=>({
-      text: todo.text
+    //빈 문자열이 아닌 것만 요청에 포함시키도록 로직 변경
+    const filteredTodos = Object.values(todos).filter((todo) => todo.text.trim() !== "");
+    const formattedTodos = filteredTodos.map((todo) => ({
+      text: todo.text,
     }));
+    /*const formattedTodos = Object.values(todos).map((todo)=>({
+      text: todo.text
+    }));*/
     try{
       const response = await post("/api/todo", {
         todo: formattedTodos
       });
+      
       console.log(response);
-      navigate("/timer"); //성공 시 넘어감
+      const createdIds = response.data.data.todo.map((item)=> item.id); //방금 생성한 id들만 뽑아냄
+      setNewTodoIds(createdIds); // ID들 저장
+      navigate("/timer", {state:{newTodoIds: createdIds}}); //ID들 전달하면서 navigate
 
     }catch(error){
       console.log("정상적으로 등록되지 않았습니다.")

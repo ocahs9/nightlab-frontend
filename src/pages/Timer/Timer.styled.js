@@ -91,13 +91,8 @@ export const TimerButton = styled.button`
   border: 1px solid var(--Grayscale-White, #FFF);
   background: rgba(255, 255, 255, 0.25);
   
-  ${({ $disabled }) => !$disabled && css`
-    &:hover{
-      color: var(--main-red-red-50-main, #FF7F7F);
-      border: 1px solid var(--main-red-red-50-main, #FF7F7F);
-      background: rgba(255, 127, 127, 0.25);
-    }
-  `};
+  
+  
 
   ${({ $redMode }) => $redMode&& css`
       color: var(--main-red-red-50-main, #FF7F7F);
