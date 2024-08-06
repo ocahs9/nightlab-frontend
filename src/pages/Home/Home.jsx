@@ -2,7 +2,6 @@ import Header from "@components/header/Header";
 import EnterTimer from "@components/EnterTimer/EnterTimer";
 import Footer from "@components/Footer/Footer";
 import LiveUsers from "@components/LiveUsers/LiveUsers";
-import LiveUserGraphic from "@components/UserType/LiveUserGraphic";
 import MainGraphic from "@components/MainGraphic/MainGraphic";
 import Introduction from "@components/Introduction/Introduction";
 import ScrollTop from "@components/ScrollTop/ScrollTop";
@@ -14,6 +13,8 @@ import { useData } from "../../contexts/WholeContext";
 const HomePage = () => {
   const { header, setHeader } = useData();
   const LoginButton = header.showLoginButton;
+
+  const liveSectionRef = useRef();
 
   // console.log(LoginButton);
 
@@ -56,14 +57,30 @@ const HomePage = () => {
     });
   };
 
+  // 실시간 유저 수 보기 클릭 시 호출될 함수
+  const scrollToLiveSection = () => {
+    const element = document.getElementById("live-users-section");
+
+    if (element) {
+      const topOffset = element.offsetTop;
+      window.scrollTo({
+        top: topOffset,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
+      <Header
+        toggleMenu={toggleMenu}
+        scrollToLiveSection={scrollToLiveSection}
+      />
       {!isMenuOpen && (
         <>
           <Introduction connectedUser={dailyUser} />
           <MainGraphic />
-          <LiveUsers liveUser={liveUser} />
+          <LiveUsers ref={liveSectionRef} liveUser={liveUser} />
           <EnterTimer />
           <Footer />
           <ScrollTop />

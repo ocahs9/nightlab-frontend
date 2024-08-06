@@ -11,10 +11,12 @@ import FillProgressBar from "@components/FillProgressBar/FillProgressBar";
 import { useData } from "../../contexts/WholeContext";
 
 const WorkReport = () => {
-  const { setHeader, isMenuOpen, setIsMenuOpen } = useData();
+  const { LoginButton, setHeader } = useData();
 
   // 사용자의 분석 리포트 데이터를 담을 State
   const [reportData, setReportData] = useState(null);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     // 헤더 중 렌더링 할 요소들 결정
@@ -44,6 +46,12 @@ const WorkReport = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: !LoginButton,
+      showHamburgerButton: true,
+    });
   };
 
   return (

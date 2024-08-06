@@ -8,13 +8,14 @@ import * as H from "./Header.styled";
 import mainLogo from "../../assets/svgs/mainLogo.svg";
 import closeIcon from "../../assets/svgs/closeIcon.svg";
 
-const Header = ({ toggleMenu }) => {
+const Header = ({ toggleMenu, scrollToLiveSection }) => {
   const { header } = useData();
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => checkLogin());
 
   const navigate = useNavigate();
 
+  // Header 내에서 Menu가 열렸는지의 여부를 관리하는 State
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
@@ -63,19 +64,6 @@ const Header = ({ toggleMenu }) => {
 
     // 홈 화면으로 리다이렉트
     window.location.href = "/";
-  };
-
-  // 실시간 유저 수 보기 클릭 시 호출될 함수
-  const scrollToLiveSection = () => {
-    const element = document.getElementById("live-users-section");
-
-    if (element) {
-      const topOffset = element.offsetTop;
-      window.scrollTo({
-        top: topOffset,
-        behavior: "smooth",
-      });
-    }
   };
 
   return (
