@@ -171,9 +171,27 @@ const MyPage = () => {
     }
   };
 
+  const scrollToSection = () => {
+    window.location.href = "/";
+  };
+
+  const targetSectionRef = useRef(null);
+  const sidebarbtnclick = () => {
+    // sidebar 닫히게 하는 로직
+    setTimeout(() => {
+      if (targetSectionRef.current) {
+        targetSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0); // 스크롤 이동 (메인 페이지가 렌더링 된 이후)
+  };
+
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
+      <Header
+        toggleMenu={toggleMenu}
+        scrollToSection={scrollToSection}
+        livescroll={sidebarbtnclick}
+      />
 
       {!isMenuOpen && (
         <MP.Container>

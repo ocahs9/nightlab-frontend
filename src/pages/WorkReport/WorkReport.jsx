@@ -1,7 +1,7 @@
 import * as WR from "./WorkReport.styled";
 
 import { get } from "@apis/index";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import Comparison from "@components/Comparison/Comparison";
 import Header from "@components/header/Header";
@@ -54,9 +54,27 @@ const WorkReport = () => {
     });
   };
 
+  const scrollToSection = () => {
+    window.location.href = "/";
+  };
+
+  const targetSectionRef = useRef(null);
+  const sidebarbtnclick = () => {
+    // sidebar 닫히게 하는 로직
+    setTimeout(() => {
+      if (targetSectionRef.current) {
+        targetSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0); // 스크롤 이동 (메인 페이지가 렌더링 된 이후)
+  };
+
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
+      <Header
+        toggleMenu={toggleMenu}
+        scrollToSection={scrollToSection}
+        livescroll={sidebarbtnclick}
+      />
 
       {!isMenuOpen && (
         <>

@@ -223,14 +223,7 @@ const Timer = () => {
 
   // 실시간 유저 수 보기 메뉴 클릭 시 동작하는 함수
   const scrollToSection = () => {
-    setIsMenuOpen(false);
-    navigate("/");
-
-    setHeader({
-      showLogo: true,
-      showLoginButton: true,
-      showHamburgerButton: true,
-    });
+    window.location.href = "/";
   };
 
   const targetSectionRef = useRef(null);
