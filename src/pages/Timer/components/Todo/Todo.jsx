@@ -1,11 +1,14 @@
 import { del, get, patch, post } from "@apis/index";
 import { IcPlusRed, IcXRed } from "@assets/svgs/index";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import * as S from "./Todo.styled";
 
 const Todo = () => {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
-  //추후 api 요청으로 받아온걸로 세팅할 예정
+  const location = useLocation();
+  const newTodoIds = location.state?.newTodoIds || []; //전달받은 새로 생성된 todo의 id를 배열로 가져옴
+  //추후 api 요청으로 받아온걸로 세팅할 예정 - 아래는 그냥 더미 예시(어차피 렌더링 안됨)
   const [todos, setTodos] = useState({
     1: {text: '0721 목표작업', completed: false, isEditing: false },
     2: {text: '0721 목표작업', completed: false, isEditing: false },
@@ -14,17 +17,28 @@ const Todo = () => {
     5: {text: '0721 목표작업', completed: false, isEditing: false },
   })
 
+  useEffect(()=>{
+    console.log("하이하이",todos);
+  },[todos])
+
   //마운트 시 조회한 값으로 렌더링
   useEffect(()=>{
-    todoGetApi();
+    if(newTodoIds.length === 0){
+      setTodos({});
+    }else{
+      todoGetApi();
+    }
   },[])
 
   const todoGetApi = async() => {
     try{
       const response = await get("/api/todo");
-      console.log(response);
-      const apiTodo = response.data.data.todo;
-      const formattedApiTodo = apiTodo.reduce((acc,{id, text, completed})=> {
+      
+      //api 명세랑 또 달라 ㅜㅜ 결국 내가 수정
+      const apiTodo = response.data;
+      const filteredApiTodo = apiTodo.filter((todo)=>newTodoIds.includes(todo.id));
+      
+      const formattedApiTodo = filteredApiTodo.reduce((acc,{id, text, completed})=> {
         acc[id] = {text, completed, isEditing: false};
         return acc;
       },{});
@@ -35,16 +49,46 @@ const Todo = () => {
     }
   }
 
+  //여기 로직이 잘못되었었음. 여기선 "하나 하나" 추가하는 로직으로 가야만 함 - 논리 구조 잘 생각해서, 그대로 복사하지 말기.
   const todoCreateApi = async() => {
-    const formattedTodos = Object.values(todos).map((todo)=>({
-      text: todo.text
-    }));
+
+    const todoCount = Object.keys(todos).length; //객체의 키들을 뽑아 배열을 만든 뒤 길이 체크
+    if(todoCount >=5){
+      console.log("최대 5개의 todo만 추가할 수 있습니다.");
+      return;
+    }
+
     try{
       const response = await post("/api/todo", {
-        todo: formattedTodos
+
+        todo: [{
+          text: ""
+        }]
       });
       //아마 여기서 넘겨주는 id를 활용해서 객체를 세팅해야함
+      console.log("하하");
       console.log(response);
+
+      const findMaxIdFromResponse = (response) => {
+        // 응답의 데이터 구조를 통해 todos 배열을 추출합니다.
+        const todos = response.data.data.todo;
+        
+        // todos 배열에서 모든 ID를 추출하여 배열로 만듭니다.
+        const ids = todos.map(todo => todo.id);
+        
+        // 배열에서 가장 큰 ID를 찾습니다.
+        const maxId = Math.max(...ids);
+        
+        return maxId;
+      };
+
+      const newId = findMaxIdFromResponse(response);
+      const newTodo = {text: "", completed: false, isEditing: false};
+    
+      setTodos((prevTodos)=>({
+        ...prevTodos,
+        [newId]: newTodo,
+      }))
     }catch(error){
       console.log("정상적으로 등록되지 않았습니다.")
       console.error(error);
@@ -127,22 +171,7 @@ const Todo = () => {
   }
 
   const handleAddTodo = () => {
-    const newTodoText = "";
-    const todoCount = Object.keys(todos).length; //객체의 키들을 뽑아 배열을 만든 뒤 길이 체크
-    if(todoCount >=5){
-      console.log("최대 5개의 todo만 추가할 수 있습니다.");
-      return;
-    }
     
-    //todoCount === 0 (falsy)면 1, 아니면 계산해서 값 할당(객체의 키들을 뽑은 뒤 Number 내장함수로 숫자로 변환한 배열 생성, 그리고 이를 스프레드로 뿌려줌)
-    //최대값을 계산하는 Math를 사용하기 위함이므로, 숫자형으로 변환한 것!(원래 객체에서의 key값은 전부 문자열 취급)
-    const newId = todoCount ? Math.max(...Object.keys(todos).map(Number)) + 1: 1;
-    const newTodo = {text: newTodoText, completed: false, isEditing: false};
-    
-    setTodos((prevTodos)=>({
-      ...prevTodos,
-      [newId]: newTodo,
-    }))
     todoCreateApi(); //api 요청 보냄
   }
 
@@ -153,14 +182,15 @@ const Todo = () => {
     //index, 즉 id에 해당하는 부분을 수정하는 로직(재정렬) - 중간에 사라질 수도 있으므로
     //reduce함수는 2개의 인자(리듀서 함수, 초기값 - 누적기가 시작하는 값)
     //리듀서 함수는 
+    /*
     const reorderedTodos = Object.keys(updatedTodos).reduce((acc, currentKey, idx)=>{
       acc[idx+1]= updatedTodos[currentKey];
       return acc; //현재 acc 갱신
     }
-    ,{})//{}는 초기 acc를 의미함
+    ,{})//{}는 초기 acc를 의미함*/
 
     todoDeleteApi(id); //삭제 api 요청도 보냄 
-    setTodos(reorderedTodos);
+    setTodos(updatedTodos);
     
   }
 

@@ -1,5 +1,6 @@
+import { checkLogin } from "@utils/checkLogin";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useData } from "../../contexts/WholeContext";
 
 import * as H from "./Header.styled";
@@ -34,7 +35,11 @@ const Header = ({ toggleMenu }) => {
   };
 
   const handleTimerClick = () => {
-    navigate("/timer");
+    if(checkLogin()){
+      navigate("/login-timer");
+    }else{
+      navigate("/unlogin-timer");
+    }
   };
 
   const handleMyPageClick = () => {
