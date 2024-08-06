@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as S from "./Todo.styled";
 
+//수정사항디브
+import icon_check_goal from "@assets/svgs/icon_check_goal.svg";
+import pen from "@assets/svgs/icon_pen.svg";
+import pen_red from "@assets/svgs/icon_pen_red.svg";
+import icon_uncheck_goal from "@assets/svgs/icon_uncheck_goal.svg";
+import icon_x from "@assets/svgs/icon_x.svg";
+import icon_x_red from "@assets/svgs/icon_x_red.svg";
+
 const Todo = () => {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
   const location = useLocation();
@@ -171,7 +179,6 @@ const Todo = () => {
   }
 
   const handleAddTodo = () => {
-    
     todoCreateApi(); //api 요청 보냄
   }
 
@@ -242,7 +249,7 @@ const Todo = () => {
             {Object.entries(todos).map(([id,todo])=>(
               <S.TodoListBox key={id}>
               <S.TodoListBoxContent>
-                <S.TodoListBoxCheckButton onClick={()=>handleToggleCompleted(id)} $isCompleted={todo.completed}/>
+                <S.TodoListBoxCheckButton $icon_check_goal={icon_check_goal} $icon_uncheck_goal={icon_uncheck_goal}   onClick={()=>handleToggleCompleted(id)} $isCompleted={todo.completed}/>
                 <S.TodoListBoxTextInput
                   disabled={!todo.isEditing} 
                   $editing={todo.isEditing}
@@ -252,8 +259,8 @@ const Todo = () => {
                 </S.TodoListBoxTextInput>
               </S.TodoListBoxContent>
               <S.TodoListBoxEdit>
-                <S.TodoListBoxEditBtn $red={todo.isEditing} onClick={()=>handleToggleEdit(id)} />
-                <S.TodoListBoxDeleteBtn onClick={()=>handleDeleteTodo(id)}/>
+                <S.TodoListBoxEditBtn $pen_red={pen_red} $pen={pen} $red={todo.isEditing} onClick={()=>handleToggleEdit(id)} />
+                <S.TodoListBoxDeleteBtn $icon_x_red={icon_x_red} $icon_x={icon_x} onClick={()=>handleDeleteTodo(id)}/>
               </S.TodoListBoxEdit>
             </S.TodoListBox>
             ))}
