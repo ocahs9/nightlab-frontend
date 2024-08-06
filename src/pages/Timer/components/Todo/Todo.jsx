@@ -5,12 +5,12 @@ import { useLocation } from "react-router-dom";
 import * as S from "./Todo.styled";
 
 //수정사항디브
+import pen from "@assets/images/icon_pen.png";
+import pen_red from "@assets/images/icon_pen_red.png";
+import icon_uncheck_goal from "@assets/images/icon_uncheck_goal.png";
+import icon_x from "@assets/images/icon_x.png";
+import icon_x_red from "@assets/images/icon_x_red.png";
 import icon_check_goal from "@assets/svgs/icon_check_goal.svg";
-import pen from "@assets/svgs/icon_pen.svg";
-import pen_red from "@assets/svgs/icon_pen_red.svg";
-import icon_uncheck_goal from "@assets/svgs/icon_uncheck_goal.svg";
-import icon_x from "@assets/svgs/icon_x.svg";
-import icon_x_red from "@assets/svgs/icon_x_red.svg";
 
 const Todo = () => {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
