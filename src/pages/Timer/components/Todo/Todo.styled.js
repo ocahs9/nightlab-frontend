@@ -126,14 +126,13 @@ export const TodoListBoxCheckButton = styled.div`
  
   width: 34px;
   height: 34px;
-  ${({ $isCompleted, $icon_check_goal, $imgsrc }) => $isCompleted ? css`
-    background-image: url(${$imgsrc });
+  ${({ $isCompleted, $icon_check_goal, $icon_uncheck_goal }) => $isCompleted ? css`
+    background-image: url(${$icon_check_goal});
   ` : css`
-  background-image: url(${$imgsrc });
+  background-image: url(${$icon_uncheck_goal});
   background-repeat: no-repeat;
   background-position: center;
   `};
- 
 `
 
 export const TodoListBoxTextInput = styled.input`
