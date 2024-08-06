@@ -1,5 +1,3 @@
-import pen_red from "@assets/svgs/icon_pen_red.svg";
-import icon_x_red from "@assets/svgs/icon_x_red.svg";
 import { Ic36 } from "@assets/svgs/index";
 import todoBackground from "@assets/svgs/todoList_background.svg";
 import styled, { css, keyframes } from "styled-components";
@@ -127,7 +125,11 @@ export const TodoListBoxContent = styled.div`
 export const TodoListBoxCheckButton = styled.div`
   width: 34px;
   height: 34px;
-  background-image: url(${({ $isCompleted, $icon_check_goal, $icon_uncheck_goal  }) => $isCompleted ? $icon_check_goal : $icon_uncheck_goal});
+  ${({ $isCompleted, $icon_check_goal, $icon_uncheck_goal }) => $isCompleted ? css`
+    background-image: url(${$icon_check_goal});
+  ` : css`
+  background-image: url(${$icon_uncheck_goal});
+  `};
 `
 
 export const TodoListBoxTextInput = styled.input`
@@ -152,35 +154,34 @@ export const TodoListBoxEdit = styled.div`
   align-items: center;
   gap: 8px;
 `
-//버튼수정디브
+
 export const TodoListBoxEditBtn = styled.div`
-  background-image: url( ${({ $red, $pen_red, $pen }) => $red? $pen_red: $pen});
-    display: flex;
   width: 24px;
   height: 24px;
   padding: 5px 4px 4px 5px;
-  justify-content: center;
-  align-items: center;
-
-  background-repeat: no-repeat; /* 이미지 반복 없음 */
-  background-position: center; /* 중앙에 위치 */
-  //background-size: contain; /* 요소 내에 맞춤 */
-  //&:hover{
-    //background-image: url(${pen_red});
-  //}
-`
-//버튼수정디브
-export const TodoListBoxDeleteBtn = styled.div`
-  background-image: url( ${({ $red, $icon_x_red, $icon_x }) => $red? $icon_x_red: $icon_x});
-
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  ${({ $red, $pen_red, $pen }) => $red ? css`
+    background-image: url(${$pen_red});
+  ` : css`
+    background-image: url(${$pen});
+  `};
+`;
+
+// Delete Button
+export const TodoListBoxDeleteBtn = styled.div`
   width: 24px;
   height: 24px;
   padding: 5px 4px 4px 5px;
+  display: flex;
   justify-content: center;
   align-items: center;
-
-  //&:hover{
-    //background-image: url(${icon_x_red});
-  //}
-`
+  ${({ $red, $icon_x_red, $icon_x }) => $red ? css`
+    background-image: url(${$icon_x_red});
+  ` : css`
+    background-image: url(${$icon_x});
+  `};
+`;
