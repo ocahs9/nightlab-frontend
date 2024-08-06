@@ -1,9 +1,7 @@
 import Lottie from "react-lottie";
 
 import lightHouse from "../../animations/main_final.json";
-import timerGraphic from "../../animations/testLottie-2.json";
-
-import * as L from "./Lottie.styled";
+import timerGraphic from "../../animations/timer_final.json";
 
 export const LightHouseGraphic = () => {
   const defaultOptions = {

@@ -4,8 +4,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
 
-  margin-top: 114px;
+  margin-top: 60px;
   padding: 0 16px;
+  padding-top: 54px;
 
   color: ${({ theme }) => theme.colors.White};
   ${({ theme }) => fontStyles(theme.fonts.Header_3)}
