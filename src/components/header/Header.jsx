@@ -7,7 +7,6 @@ import * as H from "./Header.styled";
 
 import mainLogo from "../../assets/svgs/mainLogo.svg";
 import closeIcon from "../../assets/svgs/closeIcon.svg";
-import { checkLogin } from "@utils/checkLogin";
 
 const Header = ({ toggleMenu }) => {
   const { header } = useData();
