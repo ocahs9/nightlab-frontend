@@ -128,7 +128,7 @@ export const TodoListBoxCheckButton = styled.div`
   ${({ $isCompleted, $icon_check_goal, $icon_uncheck_goal }) => $isCompleted ? css`
     background-image: url(${$icon_check_goal});
   ` : css`
-  background-image: url(${$icon_uncheck_goal});
+  background-image: url(${$icon_check_goal});
   `};
 `
 
