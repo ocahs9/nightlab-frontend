@@ -26,9 +26,6 @@ const WorkReport = () => {
 
     const fetchData = async () => {
       try {
-        // 사용자의 Access Token을 이용해 데이터에 접근
-        // const token = localStorage.getItem("user");
-
         const response = await get("/api/analyze");
         const resData = await response.data;
 
@@ -43,7 +40,6 @@ const WorkReport = () => {
     };
 
     fetchData();
-    console.log(reportData);
   }, [setHeader]);
 
   const toggleMenu = () => {

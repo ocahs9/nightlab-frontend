@@ -1,10 +1,24 @@
+import { useEffect, useState } from "react";
 import * as WP from "./WorkPattern.styled";
 
 const WorkPattern = ({ reportData }) => {
-  const { user_name, college_comparison, total_average } = reportData;
+  const { user_name, college_comparison, user_average } = reportData;
 
-  const totalAverageString = total_average.split(":")[0];
-  const totalAverage = parseInt(totalAverageString, 10);
+  const userAverageString = user_average.split(":")[0];
+  const userAverage = parseInt(userAverageString, 10);
+
+  const collegeComparison = Math.abs(college_comparison);
+
+  const [moreOrLess, setMoreOrLess] = useState();
+
+  useEffect(() => {
+    if (college_comparison >= 0 && moreOrLess !== "많이") {
+      setMoreOrLess("많이");
+    } else if (college_comparison < 0 && moreOrLess !== "적게") {
+      setMoreOrLess("적게");
+    }
+  }, [college_comparison, moreOrLess]);
+  
 
   return (
     <>
@@ -19,12 +33,12 @@ const WorkPattern = ({ reportData }) => {
         <WP.CardContainer>
           <WP.Card>
             <p className="text">같은 전공 사람들보다</p>
-            <p className="time">{college_comparison}시간</p>
-            <p className="text">더 작업했어요</p>
+            <p className="time">{collegeComparison}시간</p>
+            <p className="text">더 {moreOrLess} 작업했어요</p>
           </WP.Card>
           <WP.Card>
             <p className="text">하루 평균</p>
-            <p className="time">{totalAverage}시간</p>
+            <p className="time">{userAverage}시간</p>
             <p className="text">작업했어요</p>
           </WP.Card>
         </WP.CardContainer>

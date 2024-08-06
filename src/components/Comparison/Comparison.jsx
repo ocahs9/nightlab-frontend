@@ -12,7 +12,18 @@ const Comparison = ({ reportData }) => {
     college_comparison,
   } = reportData;
 
+  const changeTimeFormat = (time) => {
+    const HoursString = time.split(":")[0];
+    const Hours = parseInt(HoursString, 10);
+    const MinutesString = time.split(":")[0];
+    const Minutes = parseInt(MinutesString, 10);
+
+    return `${Hours}시간 ${Minutes}분`;
+  };
+
   const collegeComparison = Math.abs(college_comparison);
+  const collegeAverage = changeTimeFormat(college_average);
+  const userAverage = changeTimeFormat(user_average);
 
   const [moreOrLess, setMoreOrLess] = useState();
 
@@ -34,12 +45,12 @@ const Comparison = ({ reportData }) => {
             <p>
               {college} 평균 야작 시간
               <br />
-              <span>{college_average}</span>
+              <span>{collegeAverage}</span>
             </p>
             <p>
               {user_name}님의 평균 야작 시간
               <br />
-              <span>{user_average}</span>
+              <span>{userAverage}</span>
             </p>
             <p>
               같은 전공 대비

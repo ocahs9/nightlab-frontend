@@ -23,7 +23,7 @@ export const Text = styled.div`
 
   .clock {
     display: inline-block;
-    width: 122px;
-    margin-right: 4px;
+    min-width: 118px;
+    max-width: 122px;
   }
 `;
