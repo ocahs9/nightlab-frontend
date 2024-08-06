@@ -53,7 +53,7 @@ const Login = () => {
           로그인 시 작업 시간 기록과 분석 리포트 등 다양한 기능을 사용할 수
           있어요
         </S.LoginTitleExplanation>
-        <S.LoginGraphic $imgSrc={BeforLogin}>아직 내용 없음</S.LoginGraphic>
+        <S.LoginGraphic $imgSrc={BeforLogin}></S.LoginGraphic>
         <S.LoginSubTitle>나의 야작 메이트, LOGO, 슬로건</S.LoginSubTitle>
         <S.LoginButton
           $imgsrc={kakaoButtonImg}

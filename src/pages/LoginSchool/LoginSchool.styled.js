@@ -100,6 +100,7 @@ export const Btn = styled.button`
     border: 1px solid rgba(237, 241, 245, 0.25);
     background: rgba(237, 241, 245, 0.25);
     color: rgba(237, 241, 245, 0.25);
+    cursor:not-allowed;
   ` };
 `
 
