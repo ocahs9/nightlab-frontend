@@ -249,7 +249,7 @@ const Todo = () => {
             {Object.entries(todos).map(([id,todo])=>(
               <S.TodoListBox key={id}>
               <S.TodoListBoxContent>
-                <S.TodoListBoxCheckButton $icon_check_goal={icon_check_goal} $icon_uncheck_goal={icon_uncheck_goal}   onClick={()=>handleToggleCompleted(id)} $isCompleted={todo.completed}/>
+                <S.TodoListBoxCheckButton $imgsrc={icon_uncheck_goal} $icon_check_goal={icon_check_goal} $icon_uncheck_goal={icon_uncheck_goal}   onClick={()=>handleToggleCompleted(id)} $isCompleted={todo.completed}/>
                 <S.TodoListBoxTextInput
                   disabled={!todo.isEditing} 
                   $editing={todo.isEditing}
