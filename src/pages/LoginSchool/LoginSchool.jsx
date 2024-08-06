@@ -55,6 +55,7 @@ const LoginSchool = () => {
   const [isFormCompleted, setIsFormCompleted] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [emailCode, setEmailCode] = useState("");
+  const [waitSend, setWaitSend] = useState(false);
   const [isMailSended, setIsMailSended] = useState(false);
   const [isCertificated, setIsCertificated] = useState(false);
 
@@ -84,7 +85,7 @@ const LoginSchool = () => {
     //setIsMailSended(true);
 
     //아래의 코드는 api 연결할 때 주석 해제하여 그대로 사용할 예정
-    
+    setWaitSend(true);
     try{
       const response = await post("auth/verify", 
         {
@@ -94,9 +95,11 @@ const LoginSchool = () => {
       console.log(response.data); 
       setIsMailSended(true);
       alert("입력하신 이메일로 인증코드가 전송되었습니다.");
+      setWaitSend(false);
     }
     catch(error){
-      alert(error.response.data.detail);
+      alert("제대로 된 학교 이메일을 입력해주세요");
+      setWaitSend(false);
       console.error("Error:",error);
     }
     
@@ -148,7 +151,7 @@ const LoginSchool = () => {
                   value={emailAddress}
                   placeholder="학교 이메일을 입력해주세요"
                 ></S.Input>
-                <S.Btn onClick={() => handleEmailButton(emailAddress)}>
+                <S.Btn $isSending={waitSend} onClick={() => handleEmailButton(emailAddress)}>
                   인증하기
                 </S.Btn>
               </S.InputAndBtnWrapper>
