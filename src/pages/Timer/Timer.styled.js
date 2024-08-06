@@ -11,7 +11,7 @@ import styled, { css } from "styled-components";
 
 export const TimerPageWrapper = styled.section`
   display: flex;
-  width: 390px;
+  width: 375px;
   flex-direction: column;
   align-items: flex-start;
   gap: 124px;
@@ -90,8 +90,6 @@ export const TimerButton = styled.button`
   color: var(--Grayscale-White, #FFF);
   border: 1px solid var(--Grayscale-White, #FFF);
   background: rgba(255, 255, 255, 0.25);
-  
-  
   
 
   ${({ $redMode }) => $redMode&& css`

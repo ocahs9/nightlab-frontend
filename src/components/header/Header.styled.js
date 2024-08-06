@@ -7,14 +7,14 @@ export const Container = styled.div`
 `;
 
 export const NavBar = styled.div`
-  width: 100%;
+  width: 375px;
   height: 44px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  gap: 131px;
+  //gap: 131px;
 
   .mainLogo {
     width: 120px;

@@ -51,7 +51,7 @@ const ProfileSetup = () => {
 
     }
     catch(error){
-      //console.error("Error",error);
+      console.error("Error",error);
       alert(error.response.data.detail);
     }
     
