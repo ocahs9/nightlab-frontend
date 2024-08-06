@@ -10,7 +10,7 @@ const QuitModal = ({ onHide, onExit }) => {
   return (
     <>
       <QM.Wrapper onClick={handleBackdropClick}>
-        <QM.QuitModal show="true" backdrop="true" centered="true">
+        <QM.QuitModal >
           <QM.QuitModalBody>
             <h4>정말 탈퇴하시겠어요?</h4>
             <p>탈퇴하면 정보를 복구할 수 없어요</p>

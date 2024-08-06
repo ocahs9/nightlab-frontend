@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useData } from "../../contexts/WholeContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ import pencilIcon from "../../assets/svgs/pencil.svg";
 import * as MP from "./MyPage.styled";
 import QuitModal from "./QuitService/QuitModal";
 import { del, get, patch } from "@apis/index";
+import { checkLogin } from "@utils/checkLogin";
 
 const MyPage = () => {
   const { isMenuOpen, setIsMenuOpen, setHeader } = useData();
@@ -17,9 +18,13 @@ const MyPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [myCharacter, setMyCharacter] = useState(null);
-  const [nickname, setNickName] = useState(null);
-  const [college, setCollege] = useState(null);
+  const [myCharacter, setMyCharacter] = useState("");
+  const [originalNickname, setOriginalNickname] = useState(""); // 변경하기 이전의 사용자 이름
+  const [nickname, setNickName] = useState(""); // 변경할 사용자 이름 (화면에 렌더링되는 이름)
+  const [college, setCollege] = useState(""); // 단과대학
+  const [collegeEmail, setCollegeEmail] = useState(""); // 대학 이메일 주소
+
+  const inputRef = useRef();
 
   useEffect(() => {
     setHeader({
@@ -35,61 +40,17 @@ const MyPage = () => {
         console.log(resData);
 
         setNickName(resData.user_name);
+        setOriginalNickname(resData.user_name);
         setMyCharacter(`/${resData.profile}_profile.svg`);
         setCollege(resData.college);
+        setCollegeEmail(resData.college_email);
       } catch (error) {
-        // console.error("Error :", error);
+        console.error("Error :", error);
       }
     };
 
-    // // Local Storage를 활용한 기능 구현
-    // const savedCharacter = localStorage.getItem("selectedCharacter");
-    // if (savedCharacter) {
-    //   const savedCharacterPath = `/${savedCharacter}_profile.svg`;
-    //   setMyCharacter(savedCharacterPath);
-    // }
-
-    // const savedNickName = localStorage.getItem("finalNickName");
-    // if (savedNickName) {
-    //   setNickName(savedNickName);
-    // }
-
     fetchUserData();
   }, [setHeader]);
-
-  // const ChangeUserInfo = async () => {
-  //   const userData = {};
-
-  //   if (college.trim()) {
-  //     userData.college = college;
-  //   }
-  //   if (nickname.trim()) {
-  //     userData.user_name = userName;
-  //   }
-  //   if (myCharacter.trim()) {
-  //     userData.profile = profile;
-  //   }
-
-  //   // 데이터가 없는 경우 요청을 보내지 않음
-  //   if (Object.keys(userData).length === 0) {
-  //     console.log("수정할 정보가 없습니다.");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await patch("/api/mypage", userData);
-
-  //     console.log(response);
-
-  //     if (response.ok) {
-  //       console.log("회원 정보가 성공적으로 수정되었습니다!");
-  //     } else {
-  //       console.log("회원 정보 수정 실패;");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -99,21 +60,52 @@ const MyPage = () => {
     navigate("/mypage/character");
   };
 
-  // patch 기능 구현해야함
-  const handleCollege = (e) => {
-    setCollege(e.target.value);
-  };
-
-  const toggleEditMode = () => {
-    setIsEditing((prev) => !prev);
+  const handleButtonClick = () => {
+    if (isEditing) {
+      changeNickname();
+      // setIsEditing(false);
+    } else {
+      setIsEditing(true);
+    }
   };
 
   const handleNicknameChange = (e) => {
-    const ChangedNickName = e.target.value;
+    setNickName(e.target.value);
+  };
 
-    if (ChangedNickName !== nickname) {
-      setNickName(ChangedNickName);
-      localStorage.setItem("finalNickName", ChangedNickName);
+  const changeNickname = async () => {
+    if (!nickname) {
+      alert("변경할 사용자 이름을 입력하세요!");
+      inputRef.current.focus();
+      return;
+    } else {
+      // Check if the nickname has changed
+      if (nickname === originalNickname) {
+        alert("Nickname is the same as the original. No changes made.");
+        setIsEditing(false);
+        return;
+      }
+
+      const userName = {
+        user_name: nickname,
+      };
+
+      try {
+        const response = await patch("/api/mypage", userName);
+
+        console.log(response.data);
+        console.log(response.status);
+
+        if (response.status === 200) {
+          alert("사용자 이름이 성공적으로 변경되었습니다!");
+          setIsEditing(false); // Exit edit mode on success
+        } else {
+          alert("Failed to update nickname. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error updating nickname:", error);
+        alert("An error occurred. Please try again later.");
+      }
     }
   };
 
@@ -126,16 +118,31 @@ const MyPage = () => {
     setIsModalOpen(false);
   };
 
-  const handleWithdrawl = async () => {
-    try {
-      const response = del("/api/mypage/revoke");
+  // 탈퇴하기 클릭 시 호출되는 함수
+  const handleAccoutDeletion = async () => {
+    const confirmDelete = window.confirm("정말로 탈퇴하시겠습니까?");
+    if (!confirmDelete) {
+      return;
+    } else {
+      try {
+        const response = await del("/api/mypage/revoke");
 
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+        console.log(response.data);
+        console.log(response.status);
+
+        if (response.status === 200) {
+          localStorage.removeItem("user");
+          localStorage.removeItem("isSetComplete");
+          window.location.href = "/";
+        } else {
+          console.error("Account deletion failed");
+          alert("회원 탈퇴에 실패했습니다. 다시 시도해 주세요.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("오류가 발생했습니다. 나중에 다시 시도해 주세요.");
+      }
     }
-    // console.log(`${nickname}님이 탈퇴하였습니다.`);
-    // navigate("/");
   };
 
   return (
@@ -146,7 +153,7 @@ const MyPage = () => {
         <MP.Container>
           <MP.TextButton>
             <MP.Text>마이페이지</MP.Text>
-            <MP.ModifyButton onClick={toggleEditMode}>
+            <MP.ModifyButton onClick={handleButtonClick}>
               {isEditing ? "확인" : "수정하기"}
             </MP.ModifyButton>
           </MP.TextButton>
@@ -172,6 +179,7 @@ const MyPage = () => {
                 <input
                   type="text"
                   value={nickname}
+                  ref={inputRef}
                   className="modifying-nickname"
                   onChange={handleNicknameChange}
                 />
@@ -184,7 +192,7 @@ const MyPage = () => {
           <MP.Privacy>
             <MP.Mail>
               <h5>학교 메일 주소</h5>
-              <input type="text" />
+              <input type="text" value="b911052@g.hongik.ac.kr" readOnly />
             </MP.Mail>
             <MP.Major>
               <h5>단과대학</h5>
@@ -197,7 +205,10 @@ const MyPage = () => {
               </h5>
               <p className="caution">탈퇴하면 정보를 복구할 수 없어요</p>
               {isModalOpen && (
-                <QuitModal onHide={handleCloseModal} onExit={handleWithdrawl} />
+                <QuitModal
+                  onHide={handleCloseModal}
+                  onExit={handleAccoutDeletion}
+                />
               )}
             </MP.QuitService>
           </MP.Privacy>

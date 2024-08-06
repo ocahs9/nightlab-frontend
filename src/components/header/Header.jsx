@@ -55,10 +55,14 @@ const Header = ({ toggleMenu }) => {
   const handleLogout = () => {
     // localStorage에서 토큰 제거
     localStorage.removeItem("user");
-    setIsLoggedIn(() => checkLogin());
+    localStorage.removeItem("isSetComplete");
+    localStorage.removeItem("navigateUrl");
+
+    const isLoggedIn = checkLogin();
+    setIsLoggedIn(isLoggedIn);
 
     // 홈 화면으로 리다이렉트
-    useNavigate("/");
+    window.location.href = "/";
   };
 
   // 실시간 유저 수 보기 클릭 시 호출될 함수
