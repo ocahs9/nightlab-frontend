@@ -7,7 +7,7 @@ import pencilIcon from "../../assets/svgs/pencil.svg";
 
 import * as MP from "./MyPage.styled";
 import QuitModal from "./QuitService/QuitModal";
-import { del, get, patch } from "@apis/index";
+import { del, get, patch, post } from "@apis/index";
 
 const MyPage = () => {
   const { LoginButton, setHeader } = useData();
@@ -22,6 +22,7 @@ const MyPage = () => {
   const [myCharacter, setMyCharacter] = useState("");
   const [originalNickname, setOriginalNickname] = useState(""); // 변경하기 이전의 사용자 이름
   const [nickname, setNickName] = useState(""); // 변경할 사용자 이름 (화면에 렌더링되는 이름)
+  const [nickNameOk, setNickNameOk] = useState(false);
   const [college, setCollege] = useState(""); // 단과대학
   const [collegeEmail, setCollegeEmail] = useState(""); // 대학 이메일 주소
 
@@ -80,38 +81,55 @@ const MyPage = () => {
     setNickName(e.target.value);
   };
 
+  const handleNickNameCheckBtn = async () => {
+    if (nickname !== "") {
+      try {
+        const response = await post("/auth/check/nickname", {
+          user_name: nickname,
+        });
+        console.log("닉네임 응답:", response);
+        alert("사용할 수 있는 닉네임입니다.");
+      } catch (e) {
+        console.error("Error", e);
+        alert("사용할 수 없는 닉네임입니다.");
+      }
+    }
+  };
+
   const changeNickname = async () => {
     if (!nickname) {
       alert("변경할 사용자 이름을 입력하세요!");
       inputRef.current.focus();
       return;
     } else {
-      // Check if the nickname has changed
-      if (nickname === originalNickname) {
-        alert("Nickname is the same as the original. No changes made.");
-        setIsEditing(false);
-        return;
-      }
-
-      const userName = {
-        user_name: nickname,
-      };
-
       try {
-        const response = await patch("/api/mypage", userName);
+        //handleNickNameCheckBtn();
+        const responsess = await post("/auth/check/nickname", {
+          user_name: nickname,
+        });
+        console.log("닉네임 응답:", responsess);
+        alert("사용할 수 있는 닉네임입니다.");
 
+        const userName = {
+          user_name: nickname,
+        };
+
+        const response = await patch("/api/mypage", userName);
         console.log(response.data);
         console.log(response.status);
-
-        if (response.status === 200) {
-          alert("사용자 이름이 성공적으로 변경되었습니다!");
-          setIsEditing(false); // Exit edit mode on success
-        } else {
-          alert("Failed to update nickname. Please try again.");
-        }
+        setIsEditing(false); // Exit edit mode on success
+        // if (response.status === 200) {
+        //   alert("사용자 이름이 성공적으로 변경되었습니다!");
+        //   setIsEditing(false); // Exit edit mode on success
+        // } else {
+        //   alert("Failed to update nickname. Please try again.");
+        // }
       } catch (error) {
         console.error("Error updating nickname:", error);
-        alert("An error occurred. Please try again later.");
+        console.error("Error", error);
+        alert("사용할 수 없는 닉네임입니다.");
+        inputRef.current.focus();
+        //alert("An error occurred. Please try again later.");
       }
     }
   };

@@ -21,9 +21,6 @@ const HomePage = () => {
   const [liveUser, setLiveUser] = useState(null);
   const [dailyUser, setDailyUser] = useState(null);
 
-  const liveUsersRef = useRef();
-  console.log(liveUsersRef.current);
-
   useEffect(() => {
     setHeader({
       showLogo: true,
@@ -70,40 +67,16 @@ const HomePage = () => {
       showLoginButton: true,
       showHamburgerButton: true,
     });
-
-    // const element = document.getElementById("live-users-section");
-    // console.log(element);
-
-    // if (element) {
-    //   const topOffset = element.offsetTop;
-    //   window.scrollTo({
-    //     top: topOffset,
-    //     behavior: "smooth",
-    //   });
-    // } else {
-    //   console.warn("liveUsersRef is null. Element may not be rendered.");
-    // }
-
-    if (liveUsersRef.current) {
-      liveUsersRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    } else {
-      console.warn("liveUsersRef is null. Element may not be rendered.");
-    }
-
-    console.log(liveUsersRef.current);
   };
 
   const targetSectionRef = useRef(null);
   const sidebarbtnclick = () => {
-    //sidebar 닫히게 하는 로직
+    // sidebar 닫히게 하는 로직
     setTimeout(() => {
       if (targetSectionRef.current) {
         targetSectionRef.current.scrollIntoView({ behavior: "smooth" });
       }
-    }, 0); //스크롤 이동 (메인 페이지가 렌더링 된 이후)
+    }, 0); // 스크롤 이동 (메인 페이지가 렌더링 된 이후)
   };
 
   return (

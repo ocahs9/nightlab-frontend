@@ -1,5 +1,5 @@
 import { post } from "@apis/index";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./MemberPage.styled";
 import Header from "@components/header/Header";
@@ -91,9 +91,34 @@ const MemberPage = () => {
     });
   };
 
+  const scrollToSection = () => {
+    setIsMenuOpen(false);
+    navigate("/");
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: true,
+      showHamburgerButton: true,
+    });
+  };
+
+  const targetSectionRef = useRef(null);
+  const sidebarbtnclick = () => {
+    // sidebar 닫히게 하는 로직
+    setTimeout(() => {
+      if (targetSectionRef.current) {
+        targetSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0); // 스크롤 이동 (메인 페이지가 렌더링 된 이후)
+  };
+
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
+      <Header
+        toggleMenu={toggleMenu}
+        scrollToSection={scrollToSection}
+        livescroll={sidebarbtnclick}
+      />
       {!isMenuOpen && (
         <S.MemberPageWrapper>
           <S.MemberPageLayout>

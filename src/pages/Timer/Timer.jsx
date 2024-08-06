@@ -2,7 +2,7 @@ import { get, post } from "@apis/index";
 import { IcRefresh } from "@assets/svgs/index";
 import { checkLogin } from "@utils/checkLogin";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as S from "./Timer.styled";
 import Todo from "./components/Todo/Todo";
 import Header from "@components/header/Header";
@@ -221,9 +221,35 @@ const Timer = () => {
 
   //서버로 보내는 로직도 짜야함. 10초마다?
 
+  // 실시간 유저 수 보기 메뉴 클릭 시 동작하는 함수
+  const scrollToSection = () => {
+    setIsMenuOpen(false);
+    navigate("/");
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: true,
+      showHamburgerButton: true,
+    });
+  };
+
+  const targetSectionRef = useRef(null);
+  const sidebarbtnclick = () => {
+    // sidebar 닫히게 하는 로직
+    setTimeout(() => {
+      if (targetSectionRef.current) {
+        targetSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 1); // 스크롤 이동 (메인 페이지가 렌더링 된 이후)
+  };
+
   return (
     <>
-      <Header toggleMenu={toggleMenu} />
+      <Header
+        toggleMenu={toggleMenu}
+        scrollToSection={scrollToSection}
+        livescroll={sidebarbtnclick}
+      />
       {!isMenuOpen && (
         <S.TimerPageWrapper>
           <S.TimerWrapper>
