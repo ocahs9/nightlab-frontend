@@ -99,7 +99,7 @@ const LoginSchool = () => {
     }
     catch(error){
       alert("제대로 된 학교 이메일을 입력해주세요");
-      setWaitSend(false);
+      
       console.error("Error:",error);
     }
     
@@ -151,7 +151,7 @@ const LoginSchool = () => {
                   value={emailAddress}
                   placeholder="학교 이메일을 입력해주세요"
                 ></S.Input>
-                <S.Btn $isSending={waitSend} onClick={() => handleEmailButton(emailAddress)}>
+                <S.Btn $isSending={waitSend} disabled={waitSend} onClick={() => handleEmailButton(emailAddress)}>
                   인증하기
                 </S.Btn>
               </S.InputAndBtnWrapper>
