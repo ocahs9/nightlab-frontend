@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const MemberPageWrapper = styled.section`
   display: flex;
-  width: 390px;
+  width: 375px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
