@@ -126,7 +126,7 @@ export const TodoListBoxContent = styled.div`
   align-items: center;
   gap: 7px;
 `
-export const TodoListBoxCheckButton = styled.button`
+export const TodoListBoxCheckButton = styled.div`
   width: 34px;
   height: 34px;
   background-image: url(${({ $isCompleted }) => $isCompleted ? icon_check_goal : icon_uncheck_goal});
@@ -155,7 +155,7 @@ export const TodoListBoxEdit = styled.div`
   gap: 8px;
 `
 
-export const TodoListBoxEditBtn = styled.button`
+export const TodoListBoxEditBtn = styled.div`
   background-image: url( ${({ $red }) => $red? pen_red: pen});
     display: flex;
   width: 24px;
@@ -172,7 +172,7 @@ export const TodoListBoxEditBtn = styled.button`
   //}
 `
 
-export const TodoListBoxDeleteBtn = styled.button`
+export const TodoListBoxDeleteBtn = styled.div`
   background-image: url( ${({ $red }) => $red? icon_x_red: icon_x});
 
   display: flex;
