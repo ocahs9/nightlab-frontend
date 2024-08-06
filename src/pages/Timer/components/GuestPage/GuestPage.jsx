@@ -1,5 +1,5 @@
 import Header from "@components/header/Header";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../../contexts/WholeContext";
 import * as S from "./GuestPage.styled";
