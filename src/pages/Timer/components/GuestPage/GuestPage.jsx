@@ -18,9 +18,44 @@ const GuestPage = () => {
     });
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: !LoginButton,
+      showHamburgerButton: true,
+    });
+  };
+
+  const scrollToSection = () => {
+    setIsMenuOpen(false);
+    navigate("/");
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: true,
+      showHamburgerButton: true,
+    });
+  };
+
+  const targetSectionRef = useRef(null);
+  const sidebarbtnclick = () => {
+    // sidebar 닫히게 하는 로직
+    setTimeout(() => {
+      if (targetSectionRef.current) {
+        targetSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0); // 스크롤 이동 (메인 페이지가 렌더링 된 이후)
+  };
+
   return (
     <>
-      <Header />
+      <Header
+        toggleMenu={toggleMenu}
+        scrollToSection={scrollToSection}
+        livescroll={sidebarbtnclick}
+      />
       <S.GuestPageWrapper>
         <S.BodyWrapper>
           <S.TextWrapper>
