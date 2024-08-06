@@ -10,7 +10,7 @@ import closeIcon from "../../assets/svgs/closeIcon.svg";
 import { checkLogin } from "@utils/checkLogin";
 
 const Header = ({ toggleMenu }) => {
-  const { login, logout, header } = useData();
+  const { header } = useData();
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => checkLogin());
 
@@ -41,9 +41,9 @@ const Header = ({ toggleMenu }) => {
   };
 
   const handleTimerClick = () => {
-    if(checkLogin()){
+    if (checkLogin()) {
       navigate("/login-timer");
-    }else{
+    } else {
       navigate("/unlogin-timer");
     }
   };
