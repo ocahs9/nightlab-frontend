@@ -63,12 +63,13 @@ export const TodoIcon = styled(Ic36)`
 `
 //투두리스트 전체
 export const TodoListWrapper = styled.div`
-  background-image: url(${todoBackground});
+  //background-image: url(${todoBackground});
   width: 358px;
   //height: 274px;
   flex-shrink: 0;
   padding: 28px 16px 17px 16px;
   border-radius: 8px;
+  background-color: white;
 `
 //투두 리스트 내용물
 export const TodoListLayout = styled.div`
