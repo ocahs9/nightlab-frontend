@@ -40,6 +40,7 @@ const Login = () => {
 
   const [, setNavigateUrl] = useAtom(navigateAtom);
   const handleLoginBtn = (url) => {
+    console.log("로그인버튼 클릭");
     setNavigateUrl(url);
     requestKakaoLogin();
   };
@@ -54,7 +55,7 @@ const Login = () => {
           있어요
         </S.LoginTitleExplanation>
         <S.LoginGraphic $imgSrc={BeforLogin}></S.LoginGraphic>
-        <S.LoginSubTitle>나의 야작 메이트, LOGO, 슬로건</S.LoginSubTitle>
+        <S.LoginSubTitle>건강한 야작메이트, Night Lab</S.LoginSubTitle>
         <S.LoginButton
           $imgsrc={kakaoButtonImg}
           onClick={() => handleLoginBtn("/school")}
