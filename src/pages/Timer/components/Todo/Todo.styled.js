@@ -1,4 +1,3 @@
-import icon_uncheck_goal_ttt from "@assets/svgs/icon_uncheck_goal_ttt.svg";
 import { Ic36 } from "@assets/svgs/index";
 import todoBackground from "@assets/svgs/todoList_background.svg";
 import styled, { css, keyframes } from "styled-components";
@@ -127,13 +126,14 @@ export const TodoListBoxCheckButton = styled.div`
  
   width: 34px;
   height: 34px;
-  ${({ $isCompleted, $icon_check_goal, $icon_uncheck_goal }) => $isCompleted ? css`
-    background-image: url(${$icon_check_goal});
+  ${({ $isCompleted, $icon_check_goal, $imgsrc }) => $isCompleted ? css`
+    background-image: url(${$imgsrc });
   ` : css`
-  background-image: url(${icon_uncheck_goal_ttt});
+  background-image: url(${$imgsrc });
   background-repeat: no-repeat;
   background-position: center;
   `};
+ 
 `
 
 export const TodoListBoxTextInput = styled.input`
