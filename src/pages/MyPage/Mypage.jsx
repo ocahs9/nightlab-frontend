@@ -8,12 +8,13 @@ import pencilIcon from "../../assets/svgs/pencil.svg";
 import * as MP from "./MyPage.styled";
 import QuitModal from "./QuitService/QuitModal";
 import { del, get, patch } from "@apis/index";
-import { checkLogin } from "@utils/checkLogin";
 
 const MyPage = () => {
-  const { isMenuOpen, setIsMenuOpen, setHeader } = useData();
+  const { LoginButton, setHeader } = useData();
 
   const navigate = useNavigate();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,7 +44,7 @@ const MyPage = () => {
         setOriginalNickname(resData.user_name);
         setMyCharacter(`/${resData.profile}_profile.svg`);
         setCollege(resData.college);
-        setCollegeEmail(resData.college_email);
+        setCollegeEmail(resData.email);
       } catch (error) {
         console.error("Error :", error);
       }
@@ -54,6 +55,12 @@ const MyPage = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+
+    setHeader({
+      showLogo: true,
+      showLoginButton: !LoginButton,
+      showHamburgerButton: true,
+    });
   };
 
   const handleCharacter = () => {
@@ -132,6 +139,7 @@ const MyPage = () => {
 
         if (response.status === 200) {
           localStorage.removeItem("user");
+          localStorage.removeItem("navigateUrl");
           localStorage.removeItem("isSetComplete");
           window.location.href = "/";
         } else {
@@ -192,7 +200,7 @@ const MyPage = () => {
           <MP.Privacy>
             <MP.Mail>
               <h5>학교 메일 주소</h5>
-              <input type="text" value="b911052@g.hongik.ac.kr" readOnly />
+              <input type="text" value={collegeEmail} readOnly />
             </MP.Mail>
             <MP.Major>
               <h5>단과대학</h5>

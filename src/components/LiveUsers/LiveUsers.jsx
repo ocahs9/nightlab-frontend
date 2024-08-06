@@ -6,7 +6,7 @@ import LiveUserGraphic from "@components/UserType/LiveUserGraphic";
 const LiveUsers = ({ liveUser }) => {
   return (
     <>
-      <LU.Container id="live-users-section">
+      <LU.Container>
         <LU.Text>
           <span className="clock-line">
             <span className="clock">

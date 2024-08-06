@@ -15,7 +15,7 @@ const Comparison = ({ reportData }) => {
   const changeTimeFormat = (time) => {
     const HoursString = time.split(":")[0];
     const Hours = parseInt(HoursString, 10);
-    const MinutesString = time.split(":")[0];
+    const MinutesString = time.split(":")[1];
     const Minutes = parseInt(MinutesString, 10);
 
     return `${Hours}시간 ${Minutes}분`;

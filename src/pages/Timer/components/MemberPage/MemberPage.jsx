@@ -5,7 +5,9 @@ import * as S from "./MemberPage.styled";
 import Header from "@components/header/Header";
 import { useData } from "/src/contexts/WholeContext";
 const MemberPage = () => {
-  const { isMenuOpen, setIsMenuOpen, setHeader } = useData();
+  const { LoginButton, setHeader } = useData();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [todos, setTodos] = useState({
     1: { text: "" },
@@ -18,6 +20,12 @@ const MemberPage = () => {
   const [newTodoIds, setNewTodoIds] = useState([]); // 생성된 todo의 ID를 저장할 상태
 
   useEffect(() => {
+    setHeader({
+      showLogo: true,
+      showLoginButton: true,
+      showHamburgerButton: true,
+    });
+
     //some 메서드는 하나라도 주어진 조건을 만족하면 true를 반환함
     const hasAnyInput = Object.values(todos).some(
       (todo) => todo.text.trim() !== ""
